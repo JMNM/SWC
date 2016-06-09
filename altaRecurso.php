@@ -63,7 +63,7 @@
             <label class="labelIden" for="codigoRecurso">Codigo Recurso:</label>
             <input class="formIns" type="text" name="codigoRecurso:" id="codigoRecurso:" value="" /> <br/>
             <label class="labelIden" for="DNIAlumno">DNI Alumno:</label>
-            <input class="formIns" type="text" name="DNIAlumno" id="DNIAlumno" value="" /><br/>            
+            <input class="formIns" type="text" name="DNIAlumno" id="dni" value="" /><br/>            
                       
                <br/>
                 <input class="boton" type="submit" value="Enviar"/><br/>

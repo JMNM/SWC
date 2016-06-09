@@ -46,48 +46,40 @@
             <div id="enlaces_secciones" class="mod-menu_secciones">
                 <a href="http://www.ugr.es" id="enlace_ugr"><img src="img/logo-ugr.png"></img></a>
             </div>
-        
+            <br/>
         <br/>
         <br/>
         <br/>
-        <br/>
-        <a href="inscripcionRecurso.php">Dar de Alta Recurso</a><br/>
-        <br/>
-        <a href="borraRecurso.php">Dar de Baja Recurso</a><br/>
-        <br/>
-        <a href="inscripcionRecurso.php">Modificar Recurso</a><br/>
-        <br/>
-
-          </div>
+        <a href=index.php>Pagina principal</a><br/>
+        </div>
         <div id="pagina">
-      <h1 id="titulo_pagina"><span class="texto_titulo">Recursos Activos</span></h1>
+      <h1 id="titulo_pagina"><span class="texto_titulo">Formulario de Inscripción Profesor</span></h1>
       <div id="contenido" class="sec_interior">
 	<div class="content_doku">
           
             
-            <table>
-                <thead>
-                    <tr>
-                        <th>
-                            Codigo 
-                        </th>
-                        <th>
-                            Asignatura
-                        </th>
-                        <th>
-                            Fecha
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                </tbody>
-            </table>
+            <form name="formUsuario" id="Identificarse" action="paginaAdmin.php.php" method="post" onsubmit="validarFormulario()">
+            <label class="labelIden" for="name">Nombre:</label>
+            <input class="formIns" type="text" name="nombre" id="nombre" value="" /> <br/>
             
-        
-            <p id="barra"></p><br/> 
-        
             
+            
+            <label class="labelIden" for="apellidos">Apellidos:</label>
+            <input class="formIns" type="text" name="apellidos" id="apellidos" value="" /><br/>
+            <label class="labelIden" for="DNI">DNI:</label>
+            <input class="formIns" type="text" name="DNI" id="DNI" value="" /><br/>
+            <label class="labelIden" for="nickname">Nick-name:</label>
+            <input class="formIns" type="text" name="nickname" id="nickname" value="" /><br/>
+            <label class="labelIden" for="contraseña">Contraseña:</label>
+            <input class="formIns" type="password" name="contraseña" id="contraseña" value="" /><br/>
+            <label class="labelIden" for="confirmacontraseña">Confirmar Contraseña:</label>
+            <input class="formIns" type="password" name="confirmacontraseña" id="confirmacontraseña" value="" /><br/>
+            <label class="labelIden" for="email">Email:</label>
+            <input class="formIns" type="text" name="email" id="email" value="" /><br/><br/>
+            
+
+                <input class="boton" type="submit" value="Enviar"/><br/>
+        </form>
             
     
     	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>

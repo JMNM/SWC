@@ -51,9 +51,9 @@
         <br/>
         <br/>
         <br/>
-        <a href="altaRecurso.php">Dar de Alta Recurso</a><br/>
+        <a href="altaRecurso.php">Inscibirse Recurso</a><br/>
         <br/>
-        <a href="bajaRecurso.php">Dar de Alta Recurso</a><br/>
+        <a href="bajaRecurso.php">Borrarse del Recurso</a><br/>
         <br/>
         <a href="consultaTurno.php">Consultar Turno</a><br/>
 

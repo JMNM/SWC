@@ -1,4 +1,4 @@
-  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" >
 	<head>
             <script type="text/javascript" src="funciones.js"></script>
@@ -51,42 +51,24 @@
         <br/>
         <br/>
         <br/>
-        <a href="inscripcionRecurso.php">Dar de Alta Recurso</a><br/>
-        <br/>
-        <a href="borraRecurso.php">Dar de Baja Recurso</a><br/>
-        <br/>
-        <a href="inscripcionRecurso.php">Modificar Recurso</a><br/>
-        <br/>
+        <a href=index.php>Pagina principal</a><br/>
 
           </div>
         <div id="pagina">
       <h1 id="titulo_pagina"><span class="texto_titulo">Recursos Activos</span></h1>
       <div id="contenido" class="sec_interior">
 	<div class="content_doku">
-          
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>
-                            Codigo 
-                        </th>
-                        <th>
-                            Asignatura
-                        </th>
-                        <th>
-                            Fecha
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                </tbody>
-            </table>
+      
+            <form name="formIncribirseRecurso" id="inscribirRecurso" action="paginaAdmin.php.php" method="post" onsubmit="validarDni()">
+            <label class="labelIden" for="dniProfesor">DNI Profesor:</label>
+            <input class="formIns" type="text" name="dniProf:" id="dni" value="" /> <br/>            
+                      
+               <br/>
+                <input class="boton" type="submit" value="Enviar"/><br/>
+        </form>
             
         
             <p id="barra"></p><br/> 
-        
             
             
     
