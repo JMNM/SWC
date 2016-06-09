@@ -84,6 +84,9 @@
                         <th>
                             Fecha
                         </th>
+                        <th>
+                             
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -104,10 +107,18 @@
                         /* ligar variables de resultado */
                         if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
 
-                            /* obtener el array de objetos */
-                            /*while ($fila = $resultado->fetch_row()) {
-                                printf ("(%s) (%s) (%s)\n", $fila[0], $fila[1], $fila[2]);
-                            }*/
+                            
+                            while ($fila = $resultado->fetch_row()) {
+                                //printf ("(%s) (%s) (%s)\n", $fila[0], $fila[1], $fila[2]);
+                                echo "<tr><td>".$fila[0]."</td>"
+                                        . "<td>".$fila[1]."</td>"
+                                        . "<td>".$fila[2]."</td>"
+                                        . "<td>"
+                                        . " <form action=\"infoRecurso.php\" method=\"get\">"
+                                        . "<input type=\"hidden\" value = \"".$fila[0]."\" ></input>"
+                                        . "<input name=\"submit\" type=\"submit\" value=\"Consultar\"></input>"
+                                        . "</td></tr>";
+                            }
                             
                             /* liberar el conjunto de resultados */
                             $resultado->close();
