@@ -96,7 +96,7 @@
 
                         
                           
-                        $conexion=new mysqli('localhost','root','4827','70156169x-2');
+                        $conexion=new mysqli('localhost','root',DB_CONTRASENIA,'70156169x-2');
 
                         /* comprobar la conexión */
                         if (mysqli_connect_errno()) {
