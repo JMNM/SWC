@@ -1,6 +1,7 @@
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" >
 	<head>
+            <script type="text/javascript" src="funciones.js"></script>
 		<title>Asignaturas | Departamento de Ciencias de la Computación e Inteligencia Artificial | Universidad de Granada</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
 		<meta name="description" content="Universidad de Granada - Departamento de Ciencias de la Computación e Inteligencia Artificial CCIA-UGR" />
@@ -18,7 +19,7 @@
 		      div#pagina{width:691px; background-image: url("img/interior/contenido-fondo.png"); background-size: 692px 70px;}
 		      div#interior_pie{background-image:none;}
 		    </style>
-		    	</head>
+        </head>
 	<body>
 		<div id="contenedor_margenes" class="">
 			<div id="contenedor" class="">
@@ -66,12 +67,12 @@
 
           </div>
         <div id="pagina">
-      <h1 id="titulo_pagina"><span class="texto_titulo">Listado De Recursos</span></h1>
+      <h1 id="titulo_pagina"><span class="texto_titulo">Formulario de Inscripción Profesor</span></h1>
       <div id="contenido" class="sec_interior">
 	<div class="content_doku">
           
             
-            <form class="formIns" name="formUsuario" id="Identificarse" action="paginaAdmin.php" method="post" onsubmit="validarFormulario()">
+            <form name="formUsuario" id="Identificarse" action="paginaAdmin.php.php" method="post" onsubmit="validarFormulario()">
             <label class="labelIden" for="name">Nombre:</label>
             <input class="formIns" type="text" name="nombre" id="nombre" value="" /> <br/>
             
@@ -101,7 +102,7 @@
 				    
 			    </div>
 		    </div>
-      <?php
+      	<?php
          require_once('configuracionDB.php');
             $sql = "INSERT INTO profesionales VALUES ( ?,?,?,?,?,?,?)";
 

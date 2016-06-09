@@ -46,83 +46,69 @@
             <div id="enlaces_secciones" class="mod-menu_secciones">
                 <a href="http://www.ugr.es" id="enlace_ugr"><img src="img/logo-ugr.png"></img></a>
             </div>
-
-      <form class="widget_loginform" action="https://decsai.ugr.es/" method="post">
-	    <div id="login_form_widget" class="mod-buttons fieldset login_form login_form_widget">
-	      <label id="login_widget" for="ilogin_widget" class="login login_widget">
-		<span>Usuario</span>
-		<input name="user" id="ilogin_widget" value="usuario..." onfocus="javascript:if(this.value='usuario...') this.value='';return true;" type="text" />
-	      </label>
-	      <label id="password_widget" for="ipassword_widget" class="password password_widget">
-		<span>Contraseña</span>
-		<input name="passwd" id="ipassword_widget" type="password" />
-	      </label>
-	      <label id="enviar_login_widget" for="submit_login_widget" class="enviar_login enviar_login_widget">
-		<input src="img/transp.gif" alt="enviar datos de identificación" name="submit" id="submit_login_widget" class="image-enviar" type="image" />
-	      </label>
-	      <div style="float:right; margin-top:5px;"><a id="forgot" href="https://decsai.ugr.es/index.php?p=forgotpasswd&amp;action=forgot">¿Olvidó su contraseña?</a></div>
-	      <span id="login_error_widget"> </span>
-	    </div>
-	</form>
+        
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <a href="altaRecurso.php">Dar de Alta Recurso</a><br/>
+        <br/>
+        <a href="bajaRecurso.php">Dar de Alta Recurso</a><br/>
+        <br/>
+        <a href="consultaTurno.php">Consultar Turno</a><br/>
 
           </div>
         <div id="pagina">
-      <h1 id="titulo_pagina"><span class="texto_titulo">Recursos Activos</span></h1>
+      <h1 id="titulo_pagina"><span class="texto_titulo"></span></h1>
       <div id="contenido" class="sec_interior">
 	<div class="content_doku">
           
             
-         <table>
+            <table>
                 <thead>
                     <tr>
                         <th>
-                            Codigo 
-                        </th>
-                        <th>
-                            Asignatura
-                        </th>
-                        <th>
-                            Fecha
+                            Informacion Del Recurso
                         </th>
                     </tr>
+                    <tr>
+                        <td>Nombre del Recurso:</td>
+                        <td></td> 
+                    </tr>
+                    <tr>
+                        <td>Profesor:</td>
+                        <td></td> 
+                    </tr>
+                    <tr>
+                        <td>Asignatura:</td>
+                        <td></td> 
+                    </tr>
+                    <tr>
+                        <td>Cod. Recurso:</td>
+                        <td></td> 
+                    </tr>
+                    <tr>
+                        <td>Fecha:</td>
+                        <td></td> 
+                    </tr>
+                    <tr>
+                        <td>Hora de inicio:</td>
+                        <td></td> 
+                    </tr>
+                    <tr>
+                        <td>Duración:</td>
+                        <td></td> 
+                    </tr>
+                    
                 </thead>
                 <tbody>
-                    <?php
-                        require_once('configuracionDB.php');
-                        $sql = "SELECT codigo,asignatura,fecha FROM " . TABLA_RECURSOS;
-
-                        
-                          
-                        $conexion=new mysqli('localhost','root','4827','70156169x-2');
-
-                        /* comprobar la conexión */
-                        if (mysqli_connect_errno()) {
-                            echo "Fallo de conexión";
-                            //exit();
-                        }
-                        
-                        /* ligar variables de resultado */
-                        if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
-
-                            /* obtener el array de objetos */
-                            /*while ($fila = $resultado->fetch_row()) {
-                                printf ("(%s) (%s) (%s)\n", $fila[0], $fila[1], $fila[2]);
-                            }*/
-                            
-                            /* liberar el conjunto de resultados */
-                            $resultado->close();
-                        }
-                        //$identUsuario->bind_result($pass,$tipo);
-
-                        /* obtener valor */
-                        //$identUsuario->fetch();
-                        $conexion->close();
-                                
                     
-                    ?>
                 </tbody>
             </table>
-
+            
+        
+            <p id="barra"></p><br/> 
+            
             
     
     	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
