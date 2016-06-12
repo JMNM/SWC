@@ -62,8 +62,81 @@
       <h1 id="titulo_pagina"><span class="texto_titulo"></span></h1>
       <div id="contenido" class="sec_interior">
 	<div class="content_doku">
-          
             
+            <?php
+                require_once('configuracionDB.php');
+                
+                $consultaNumReg="SELECT COUNT(*) FROM ".TABLA_RECURSOS;
+                $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
+                /* comprobar la conexión */
+                if (mysqli_connect_errno()) {
+                    echo "Fallo de conexión";
+                    //exit();
+                }
+                $numC=$conexion->query($consultaNumReg);
+                $colum = $numC->fetch_row();
+                $numC->close();
+                $conexion->close();
+                
+                
+                
+                for($j=0;$j<$colum[0];$j++){
+                    if(isset($_POST[$j])){
+                        if(!empty($_POST[$j])){
+                            $cod_consulta=$_POST["codigo".$j];
+                        }
+                    }
+                }
+                
+                $sql = "SELECT nombre,codigo,asignatura,fecha,duracion,hora_inicio,profesor FROM " . TABLA_RECURSOS . " WHERE codigo = ?";
+                
+                if(isset($cod_consulta)){
+                    if(!empty($cod_consulta)){
+                        $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
+                        
+                        /* comprobar la conexión */
+                        if (mysqli_connect_errno()) {
+                            echo "Fallo de conexión";
+                            //exit();
+                        }
+                        if($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)){
+                            
+                        }
+                        
+                        $obtenerR= $conexion->prepare($sql);
+                        $obtenerR->bind_param('s', $cod_consulta);
+                        $obtenerR->execute();
+                        /* ligar variables de resultado */
+
+                        $obtenerR->bind_result($nombreR,$codigoR, $asignaturaR,$fechaR,$duracionR,$horainicioR, $profesorR);
+                         
+                        /* obtener valor */
+                        if($obtenerR->fetch()){
+                            
+                        }
+                        $obtenerR->close();
+                        $conexion->close();
+
+                    }else{
+                        $nombreR="no encontrado";
+                        $codigoR="no encontrado";
+                        $asignaturaR="no encontrado";
+                        $fechaR="no encontrado";
+                        $duracionR="no encontrado";
+                        $horainicioR="no encontrado";
+                        $profesorR="no encontrado";
+                    }
+                }else{
+                    $nombreR="no encontrado";
+                    $codigoR="no encontrado";
+                    $asignaturaR="no encontrado";
+                    $fechaR="no encontrado";
+                    $duracionR="no encontrado";
+                    $horainicioR="no encontrado";
+                    $profesorR="no encontrado";
+                }
+            ?>
+                
             <table>
                 <thead>
                     <tr>
@@ -71,37 +144,37 @@
                             Informacion Del Recurso
                         </th>
                     </tr>
+                </thead>
+                <tbody>
+                    
                     <tr>
                         <td>Nombre del Recurso:</td>
-                        <td></td> 
+                        <?php echo "<td>".$nombreR."</td>"; ?> 
                     </tr>
                     <tr>
                         <td>Profesor:</td>
-                        <td></td> 
+                        <?php echo "<td>".$profesorR."</td>"; ?> 
                     </tr>
                     <tr>
                         <td>Asignatura:</td>
-                        <td></td> 
+                        <?php echo "<td>".$asignaturaR."</td>"; ?>
                     </tr>
                     <tr>
                         <td>Cod. Recurso:</td>
-                        <td></td> 
+                        <?php echo "<td>".$codigoR."</td>"; ?> 
                     </tr>
                     <tr>
                         <td>Fecha:</td>
-                        <td></td> 
+                        <?php echo "<td>".$fechaR."</td>"; ?> 
                     </tr>
                     <tr>
                         <td>Hora de inicio:</td>
-                        <td></td> 
+                        <?php echo "<td>".$horainicioR."</td>"; ?> 
                     </tr>
                     <tr>
                         <td>Duración:</td>
-                        <td></td> 
+                        <?php echo "<td>".$duracionR."</td>"; ?> 
                     </tr>
-                    
-                </thead>
-                <tbody>
                     
                 </tbody>
             </table>

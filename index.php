@@ -94,9 +94,7 @@
                         require_once('configuracionDB.php');
                         $sql = "SELECT codigo,asignatura,fecha FROM " . TABLA_RECURSOS;
 
-                        
-                          
-                        $conexion=new mysqli('localhost','root',DB_CONTRASENIA,'70156169x-2');
+                        $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
 
                         /* comprobar la conexión */
                         if (mysqli_connect_errno()) {
@@ -106,18 +104,19 @@
                         
                         /* ligar variables de resultado */
                         if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
-
-                            
+                            $i=0;
                             while ($fila = $resultado->fetch_row()) {
                                 //printf ("(%s) (%s) (%s)\n", $fila[0], $fila[1], $fila[2]);
                                 echo "<tr><td>".$fila[0]."</td>"
                                         . "<td>".$fila[1]."</td>"
                                         . "<td>".$fila[2]."</td>"
                                         . "<td>"
-                                        . " <form action=\"infoRecurso.php\" method=\"get\">"
-                                        . "<input type=\"hidden\" value = \"".$fila[0]."\" ></input>"
-                                        . "<input name=\"submit\" type=\"submit\" value=\"Consultar\"></input>"
+                                        . "<form action=\"infoRecurso.php\" method=\"post\">"
+                                        . "<input type=\"hidden\" name=\"codigo".$i."\" value = \"".$fila[0]."\" ></input>"
+                                        . "<input type=\"submit\" name=\"".$i."\" value=\"Consultar\"></input>"
+                                        . "</from>"
                                         . "</td></tr>";
+                                        $i++;
                             }
                             
                             /* liberar el conjunto de resultados */
