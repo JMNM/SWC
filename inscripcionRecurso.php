@@ -65,7 +65,7 @@
             
             <form name="formUsuario" action="insertarRecurso.php" method="post" onsubmit="validarFormulario()">
             <label class="labelIden" for="nombreRecurso">Nombre Recurso:</label>
-            <input class="imputIden" type="text" name="nombreRecurso" id="nombreRecurso" value="" /> <br/>           
+            <input class="imputIden" type="text" name="nombreRecurso" id="nombreRecursonombre" value="" /> <br/>           
             <label class="labelIden" for="fecha">Fecha:</label>
             <input class="imputIden" type="date" name="fecha" min="2016-01-01" id="fecha" value="" /><br/>
             <label class="labelIden" for="hora">Hora inicio:</label>
