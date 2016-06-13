@@ -59,16 +59,52 @@
       <div id="contenido" class="sec_interior">
 	<div class="content_doku">
       
-            <form name="formIncribirseRecurso" id="inscribirRecurso" action="paginaAdmin.php.php" method="post" onsubmit="validarDni()">
+            <form name="formIncribirseRecurso" id="inscribirRecurso" action="bajaRecurso.php" method="post" onsubmit="validarDni()">
             <label class="labelIden" for="codigoRecurso">Codigo Recurso:</label>
-            <input class="formIns" type="text" name="codigoRecurso:" id="codigoRecurso:" value="" /> <br/>
-            <label class="labelIden" for="DNIAlumno">DNI Alumno:</label>
-            <input class="formIns" type="text" name="DNIAlumno" id="DNIAlumno" value="" /><br/>            
+            <input class="imputIden" type="text" name="codigoRecurso" id="codigoRecurso" value="<?php 
+                            if(isset($_COOKIE['codigo'])) echo $_COOKIE['codigo'];
+                            else if(isset($_POST['codigoRecurso'])) echo $_POST['codigoRecurso'];
+                            else echo "";
+                        ?>" />
+            <br/>
+            <label class="labelIden" for="DNIAlumno">DNI:</label>
+            <input class="imputIden" type="text" name="DNIAlumno" id="DNIAlumno" value="" /><br/>            
                       
                <br/>
-                <input class="boton" type="submit" value="Enviar"/><br/>
+                <input class="labelIden" type="submit" value="Enviar"/><br/>
         </form>
-            
+            <?php 
+                if(isset($_POST['codigoRecurso'])){
+                require_once('configuracionDB.php');
+                $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
+                
+                $sql = "SELECT turno FROM lista" . strtolower($_POST['codigoRecurso']) . " WHERE dni = '".$_POST['DNIAlumno']."'";
+                
+                //$conexion->query("SET NAMES 'utf8'");
+                if ($resul = $conexion->query($sql)){
+                    if($fila = $resul->fetch_row()){
+                        $turno=$fila[0];
+                        echo "<p>".$turno."</p>";
+                        $sql_delete="DELETE FROM lista" . strtolower($_POST['codigoRecurso']) . " WHERE dni = '".$_POST['DNIAlumno']."'";
+                        $conexion->query($sql_delete);
+                        $sql_consul = "SELECT DNI,turno FROM lista" . strtolower($_POST['codigoRecurso']) . " WHERE turno> ".$turno;
+                        if ($resultado = $conexion->query($sql_consul)){
+                            while($fila = $resultado->fetch_row()){
+                                echo "<p>".$fila[0]." ".$fila[1]."</p>";
+                                $sql_update= "UPDATE lista" . strtolower($_POST['codigoRecurso']) ." SET turno=".($fila[1]-1) . " WHERE DNI='".$fila[0]."'";
+                                $conexion->query($sql_update);
+                            }
+                        }
+                    }
+                    echo "El usuario se ha borrado";
+                    echo "<br/><a href=index.php> Volver</a>";
+                }else{
+                    echo "El usuario no se ha encontrado";
+                    echo "<br/><a href=index.php> Volver</a>";
+                }
+                $conexion->close();
+                }
+            ?>
         
             <p id="barra"></p><br/> 
             

@@ -8,5 +8,3 @@
     define("TABLA_RECURSOS", "recursos" );
     define("TABLA_CITAS","citas");
 ?>
-
-

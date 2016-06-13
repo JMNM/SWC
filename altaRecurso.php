@@ -55,7 +55,7 @@
                                 <form name="formIncribirseRecurso" action="apuntarseRecurso.php" method="post" >
                                     <label class="labelIden" for="codigoRecurso">Codigo Recurso:</label>
                                     <input class="imputIden" type="text" name="codigoRecurso" id="codigoRecurso" value="<?php 
-                                                if(isset($_POST['codigo'])) echo $_POST['codigo'];
+                                                if(isset($_COOKIE['codigo'])) echo $_COOKIE['codigo'];
                                                 else echo "";
                                             ?>" />
                                     <br/>

@@ -66,14 +66,36 @@
       <div id="contenido" class="sec_interior">
 	<div class="content_doku">
       
-            <form name="formIncribirseRecurso" id="inscribirRecurso" action="paginaAdmin.php.php" method="post" onsubmit="validarDni()">
+            <form name="formIncribirseRecurso" id="inscribirRecurso" action="bajaProfesor.php" method="post" onsubmit="validarDni()">
             <label class="labelIden" for="dniProfesor">DNI Profesor:</label>
-            <input class="formIns" type="text" name="dniProf:" id="dni" value="" /> <br/>            
+            <input class="imputIden" type="text" name="dniProf" id="dni" value="" /> <br/>            
                       
                <br/>
-                <input class="boton" type="submit" value="Enviar"/><br/>
+                <input class="labelIden" type="submit" value="Enviar"/><br/>
         </form>
-            
+            <?php 
+                if(isset($_POST['dniProf'])){
+                require_once('configuracionDB.php');
+                $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
+                
+                $sql = "SELECT nombre FROM " . TABLA_USUARIO . " WHERE dni = '".$_POST['dniProf']."'";
+                
+                //$conexion->query("SET NAMES 'utf8'");
+                if ($resul = $conexion->query($sql)){
+                    if($fila = $resul->fetch_row()){
+                        echo "<p>".$fila[0]."</p>";
+                        $sql_delete="DELETE FROM " . TABLA_USUARIO . " WHERE dni = '".$_POST['dniProf']."'";
+                        $conexion->query($sql_delete);
+                    }
+                    echo "El profesor se ha borrado";
+                    echo "<br/><a href=index.php> Volver</a>";
+                }else{
+                    echo "El usuario no se ha encontrado";
+                    echo "<br/><a href=index.php> Volver</a>";
+                }
+                $conexion->close();
+                }
+            ?>
         
             <p id="barra"></p><br/> 
             
