@@ -47,7 +47,7 @@
                 <a href="http://www.ugr.es" id="enlace_ugr"><img src="img/logo-ugr.png"></img></a>
             </div>
 
-      <form class="widget_loginform" action="https://decsai.ugr.es/" method="post">
+        <form class="widget_loginform" action="identificacion.php" method="post">
 	    <div id="login_form_widget" class="mod-buttons fieldset login_form login_form_widget">
 	      <label id="login_widget" for="ilogin_widget" class="login login_widget">
 		<span>Usuario</span>

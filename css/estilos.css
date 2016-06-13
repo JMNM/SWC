@@ -49,12 +49,17 @@ label{
 .labelIden{
     text-align: right;
     margin-top: 3%;
-    width: 45%;
-    float: left;
+    padding-top: 1%;
+    text-align: right;
+    margin-left: 25%;
 }
-
-
-
+.imputIden{
+    text-align: right;
+    margin-top: 3%;
+    padding-top: 1%;
+    text-align: right;
+    border-width:1px;
+}
 
 a, a:visited { 
 	outline: none 

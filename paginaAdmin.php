@@ -1,4 +1,7 @@
-  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php 
+    session_start();
+?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" >
 	<head>
             <script type="text/javascript" src="funciones.js"></script>
@@ -58,6 +61,12 @@
         <br/>
         <a href="modificarProfesor.php">Modificar Profesor</a><br/>
         <br/>
+        <a href="inscripcionRecurso.php">Dar de Alta Recurso</a><br/>
+        <br/>
+        <a href="borraRecurso.php">Dar de Baja Recurso</a><br/>
+        <br/>
+        <a href="inscripcionRecurso.php">Modificar Recurso</a><br/>
+        <br/>
 	</form>
 
           </div>
@@ -82,10 +91,113 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                        require_once('configuracionDB.php');
+                        $sql = "SELECT apellidos,nombre,DNI FROM " . TABLA_USUARIO . " WHERE tipo = 1";
+
+                        $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
+
+                        /* comprobar la conexión */
+                        if (mysqli_connect_errno()) {
+                            echo "Fallo de conexión";
+                            //exit();
+                        }
+                        
+                        /* ligar variables de resultado */
+                        if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
+                            while ($fila = $resultado->fetch_row()) {
+                                //printf ("(%s) (%s) (%s)\n", $fila[0], $fila[1], $fila[2]);
+                                echo "<tr><td>".$fila[0]."</td>"
+                                        . "<td>".$fila[1]."</td>"
+                                        . "<td>".$fila[2]."</td>"
+                                        . "</td></tr>";
+                            }
+                            
+                            /* liberar el conjunto de resultados */
+                            $resultado->close();
+                        }
+                        //$identUsuario->bind_result($pass,$tipo);
+
+                        /* obtener valor */
+                        //$identUsuario->fetch();
+                        $conexion->close();
+                                
                     
+                    ?>
                 </tbody>
             </table>
             
+            
+            <h1 id="titulo_pagina"><span class="texto_titulo">Listado de Recursos</span></h1>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            Codigo 
+                        </th>
+                        <th>
+                            Asignatura
+                        </th>
+                        <th>
+                            Fecha
+                        </th>
+                        <th>
+                            Duracion(h) 
+                        </th>
+                        <th>
+                            Hora inicio
+                        </th>
+                         <th>
+                            Profesor 
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        require_once('configuracionDB.php');
+                        $sql = "SELECT nombre,codigo,asignatura,fecha,duracion,hora_inicio,profesor FROM " . TABLA_RECURSOS;
+
+                        $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
+
+                        /* comprobar la conexión */
+                        if (mysqli_connect_errno()) {
+                            echo "Fallo de conexión";
+                            //exit();
+                        }
+                        
+                        /* ligar variables de resultado */
+                        if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
+                            $i=0;
+                            while ($fila = $resultado->fetch_row()) {
+                                //printf ("(%s) (%s) (%s)\n", $fila[0], $fila[1], $fila[2]);
+                                echo "<tr><td>".$fila[0]."</td>"
+                                        . "<td>".$fila[1]."</td>"
+                                        . "<td>".$fila[2]."</td>"
+                                        . "<td>".$fila[3]."</td>"
+                                        . "<td>".$fila[4]."</td>"
+                                        . "<td>".$fila[5]."</td>"
+                                        . "<td>".$fila[6]."</td>"
+                                        . "</td></tr>";
+                                        $i++;
+                            }
+                            
+                            /* liberar el conjunto de resultados */
+                            $resultado->close();
+                        }
+                        //$identUsuario->bind_result($pass,$tipo);
+
+                        /* obtener valor */
+                        //$identUsuario->fetch();
+                        $conexion->close();
+                                
+                    
+                    ?>
+                </tbody>
+            </table>
     
     	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
 	<script type="text/javascript">_uacct = "UA-2290740-1";urchinTracker();</script>

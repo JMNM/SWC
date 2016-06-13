@@ -24,7 +24,13 @@
             if(isset($_POST["passwd"])){
                 if(!empty($_POST["passwd"])){
                     if($pass==md5($_POST["passwd"])){
-                        echo "<script language=\"javascript\">window.location=\"paginaAdmin.php\"</script>;";
+                        session_start();
+			$_SESSION["usuario"]=$_POST['user'];
+                        if($tipo==0)
+                            echo "<script language=\"javascript\">window.location=\"paginaAdmin.php\"</script>;";
+                        else{
+                            echo "<script language=\"javascript\">window.location=\"paginaProfesor.php\"</script>;";
+                        }
                         exit;
                     }else{
                         //echo $pass;
@@ -43,9 +49,11 @@
 
         }else{
             echo "Usuario o contraseña incorrecta 4";
+            echo "<script language=\"javascript\">window.location=\"index.php\"</script>;"; 
         }
     }else{
         echo "Usuario o contraseña incorrecta 5";
+        echo "<script language=\"javascript\">window.location=\"index.php\"</script>;"; 
     }
 ?>
 
