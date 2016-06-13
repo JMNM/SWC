@@ -1,4 +1,7 @@
-  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php 
+    session_start();
+?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" >
 	<head>
             <script type="text/javascript" src="funciones.js"></script>
@@ -55,23 +58,24 @@
 	<div class="content_doku">
           
             
-            <form name="formUsuario" id="Identificarse" action="paginaAdmin.php.php" method="post" onsubmit="validarFormulario()">
-            <label class="labelIden" for="name">Nombre Recurso:</label>
-            <input class="formIns" type="text" name="nombreRecurso" id="nombreRecurso" value="" /> <br/>
-            <label class="labelIden" for="nombreProfesor">Nombre Profesor:</label>
-            <input class="formIns" type="text" name="nombreProfesor" id="nombreProfesor" value="" /><br/>            
-            <label class="labelIden" for="apellidos">Fecha:</label>
-            <input class="formIns" type="date" name="fecha" id="fecha" value="" /><br/>
-            <label class="labelIden" for="hora">Hora:</label>
-            <input class="formIns" type="time" name="hora" id="hora" value="" /><br/>
-             <label class="labelIden" for="codigo">Codigo Asig:</label>
-             <input class="formIns" type="text" name="codigo" id="codigo" value="" /><br/>
+            <form name="formUsuario" action="insertarRecurso.php" method="post" onsubmit="validarFormulario()">
+            <label class="labelIden" for="nombreRecurso">Nombre Recurso:</label>
+            <input class="imputIden" type="text" name="nombreRecurso" id="nombreRecurso" value="" /> <br/>           
+            <label class="labelIden" for="fecha">Fecha:</label>
+            <input class="imputIden" type="date" name="fecha" min="2016-01-01" id="fecha" value="" /><br/>
+            <label class="labelIden" for="hora">Hora inicio:</label>
+            <input class="imputIden" type="time" name="hora" id="hora" value="" /><br/>
+            
+            <label class="labelIden" for="duracion">Duración:</label>
+            <input class="imputIden" type="number" name="duracion" value="" /><br/>
+             <label class="labelIden" for="codigo">Codigo Recurso:</label>
+             <input class="imputIden" type="text" name="codigo" id="codigo" value="" /><br/>
             
             <label class="labelIden" for="asignatura">Asignatura:</label>
-            <input class="formIns" type="asignatura" name="asignatura" id="asignatura" value="" /><br/>
+            <input class="imputIden" type="asignatura" name="asignatura" id="asignatura" value="" /><br/>
                       
                <br/>
-                <input class="boton" type="submit" value="Enviar"/><br/>
+                <input class="labelIden" type="submit" value="Enviar"/><br/>
         </form>
             
     

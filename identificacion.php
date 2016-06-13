@@ -1,4 +1,5 @@
- <?php
+<?php
+session_start();
     require_once('configuracionDB.php');
     $sql = "SELECT password,tipo FROM " . TABLA_USUARIO . " WHERE nickname = ?";
 
@@ -8,7 +9,7 @@
 
             /* comprobar la conexión */
             if (mysqli_connect_errno()) {
-                echo "Fallo de conexión";
+                //echo "Fallo de conexión";
                 //exit();
             }
             $identUsuario= $conexion->prepare($sql);
@@ -24,36 +25,41 @@
             if(isset($_POST["passwd"])){
                 if(!empty($_POST["passwd"])){
                     if($pass==md5($_POST["passwd"])){
-                        session_start();
+                        
 			$_SESSION["usuario"]=$_POST['user'];
-                        if($tipo==0)
+                        $_SESSION["tipo"]=$tipo;
+                        if($tipo==0){
                             echo "<script language=\"javascript\">window.location=\"paginaAdmin.php\"</script>;";
-                        else{
+                        }else{
                             echo "<script language=\"javascript\">window.location=\"paginaProfesor.php\"</script>;";
                         }
                         exit;
                     }else{
                         //echo $pass;
                         //echo md5($_POST["passwd"]);
+                        session_destroy();
                         echo "Usuario o contraseña incorrecta 1";
                         echo "<script language=\"javascript\">window.location=\"index.php\"</script>;";
                     }
                 }else{
+                    session_destroy();
                     echo "Usuario o contraseña incorrecta 2";
                     echo "<script language=\"javascript\">window.location=\"index.php\"</script>;";
                 }
             }else{
+                session_destroy();
                 echo "Usuario o contraseña incorrecta 3";
                 echo "<script language=\"javascript\">window.location=\"index.php\"</script>;"; 
             }
 
         }else{
+            session_destroy();
             echo "Usuario o contraseña incorrecta 4";
             echo "<script language=\"javascript\">window.location=\"index.php\"</script>;"; 
         }
     }else{
+        session_destroy();
         echo "Usuario o contraseña incorrecta 5";
         echo "<script language=\"javascript\">window.location=\"index.php\"</script>;"; 
     }
 ?>
-

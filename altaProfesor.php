@@ -1,4 +1,7 @@
-  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php 
+    session_start();
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" >
 	<head>
             <script type="text/javascript" src="funciones.js"></script>
@@ -58,7 +61,7 @@
 	<div class="content_doku">
           
             
-            <form name="formUsuario" action="inscripcionProf.php" method="post" onsubmit="validarFormulario()">
+            <form name="formUsuario" action="insertarProf.php" method="post" onsubmit="validarFormulario()">
             <label class="labelIden" for="nombre">Nombre:</label>
             <input class="imputIden" type="text" name="nombre" id="nombre" value="" /> <br/>
             

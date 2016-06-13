@@ -1,4 +1,5 @@
 <?php 
+    session_start();
     require_once('configuracionDB.php');
     $sql = "INSERT INTO ".TABLA_USUARIO." VALUES('".$_POST['nombre']."','".$_POST['apellidos']."','".$_POST['nickname'].
 			"', '".md5($_POST['contrasenia'])."', ".$_POST['tipo'].", '".$_POST['DNI']."', '".$_POST['email']."')";
