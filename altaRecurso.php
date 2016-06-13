@@ -62,7 +62,7 @@
 
                 <form name="formIncribirseRecurso" id="Identificarse" action="paginaAdmin.php" method="post" onsubmit="validarDni()">
                     <label class="labelIden" for="codigoRecurso">Codigo Recurso:</label>
-                    <input class="imputIden" type="text" name="codigoRecurso:" id="codigoRecurso:" value="" />
+                    <input class="imputIden" type="text" name="codigoRecurso:" id="codigoRecurso" value="" />
                     <br/>
                     <label class="labelIden" for="DNIAlumno">DNI Alumno:</label>
                     <input class="imputIden" type="text" name="DNIAlumno" id="dni" value="" />

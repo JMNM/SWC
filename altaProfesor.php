@@ -49,11 +49,12 @@
             <div id="enlaces_secciones" class="mod-menu_secciones">
                 <a href="http://www.ugr.es" id="enlace_ugr"><img src="img/logo-ugr.png"></img></a>
             </div>
-            <br/>
-        <br/>
-        <br/>
-        <br/>
-        <a href=index.php>Pagina principal</a><br/>
+        <br/><br/><br/><br/>
+        <a href=paginaAdmin.php>Volver</a><br/><br/>
+        <?php
+            echo "<p>Se ha identificado como ".$_SESSION['usuario']."</p>";
+            echo "<a href=cerrarSesion.php>Cerrar Sesión</a>";
+        ?>
         </div>
         <div id="pagina">
       <h1 id="titulo_pagina"><span class="texto_titulo">Formulario de Inscripción Profesor</span></h1>

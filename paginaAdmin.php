@@ -67,6 +67,10 @@
         <br/>
         <a href="inscripcionRecurso.php">Modificar Recurso</a><br/>
         <br/>
+        <?php
+            echo "<p>Se ha identificado como ".$_SESSION['usuario']."</p>";
+            echo "<a href=cerrarSesion.php>Cerrar Sesión</a>";
+        ?>
 	</form>
 
           </div>
@@ -79,6 +83,9 @@
             <table>
                 <thead>
                     <tr>
+                        <th>
+                            Nickname
+                        </th>
                         <th>
                             Apellidos
                         </th>
@@ -93,7 +100,7 @@
                 <tbody>
                     <?php
                         require_once('configuracionDB.php');
-                        $sql = "SELECT apellidos,nombre,DNI FROM " . TABLA_USUARIO . " WHERE tipo = 1";
+                        $sql = "SELECT nickname,apellidos,nombre,DNI FROM " . TABLA_USUARIO . " WHERE tipo = 1";
 
                         $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
 
@@ -110,6 +117,7 @@
                                 echo "<tr><td>".$fila[0]."</td>"
                                         . "<td>".$fila[1]."</td>"
                                         . "<td>".$fila[2]."</td>"
+                                        . "<td>".$fila[3]."</td>"
                                         . "</td></tr>";
                             }
                             

@@ -1,4 +1,7 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php
+    session_start();
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" >
 	<head>
             <script type="text/javascript" src="funciones.js"></script>
@@ -51,7 +54,11 @@
         <br/>
         <br/>
         <br/>
-        <a href=index.php>Pagina principal</a><br/>
+        <a href=paginaAdmin.php>Volver</a><br/><br/>
+        <?php
+            echo "<p>Se ha identificado como ".$_SESSION['usuario']."</p>";
+            echo "<a href=cerrarSesion.php>Cerrar Sesión</a>";
+        ?>
 
           </div>
         <div id="pagina">
