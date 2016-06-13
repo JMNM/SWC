@@ -49,22 +49,8 @@
         
         <br/>
         <br/>
-        <br/>
-        <br/>
-        <a href="altaRecurso.php">Inscibirse Recurso</a><br/>
-        <br/>
-        <a href="bajaRecurso.php">Borrarse del Recurso</a><br/>
-        <br/>
-        <a href="consultaTurno.php">Consultar Turno</a><br/>
-
-          </div>
-        <div id="pagina">
-      <h1 id="titulo_pagina"><span class="texto_titulo"></span></h1>
-      <div id="contenido" class="sec_interior">
-	<div class="content_doku">
-            
-            <?php
-                require_once('configuracionDB.php');
+        <?php
+        require_once('configuracionDB.php');
                 
                 $consultaNumReg="SELECT COUNT(*) FROM ".TABLA_RECURSOS;
                 $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
@@ -87,6 +73,34 @@
                         }
                     }
                 }
+        ?>
+        <br/>
+        <br/>
+        <?php
+            echo "<form action=\"altaRecurso.php\" method=\"post\">"
+                    . "<input type=\"hidden\" name=\"codigo\" value = \"".$cod_consulta."\" ></input>"
+                    . "<input type=\"submit\" name=\"submit\" value=\"Inscribirse al Recurso\"></input>"
+                    . "</from><br/><br/>";
+            
+            echo "<form action=\"bajaRecurso.php\" method=\"post\">"
+                    . "<input type=\"hidden\" name=\"codigo\" value = \"".$cod_consulta."\" ></input>"
+                    . "<input type=\"submit\" name=\"submit\" value=\"Borrarse del Recurso\"></input>"
+                    . "</from><br/><br/>";
+        
+            echo "<form action=\"consultarTurno.php\" method=\"post\">"
+                    . "<input type=\"hidden\" name=\"codigoRecurso\" value = \"".$cod_consulta."\" ></input>"
+                    . "<input type=\"submit\" name=\"submit\" value=\"Consultar Turno\"></input>"
+                    . "</from><br/><br/>";
+       
+        ?>
+          </div>
+        <div id="pagina">
+      <h1 id="titulo_pagina"><span class="texto_titulo"></span></h1>
+      <div id="contenido" class="sec_interior">
+	<div class="content_doku">
+            
+            <?php
+                
                 
                 $sql = "SELECT nombre,codigo,asignatura,fecha,duracion,hora_inicio,profesor FROM " . TABLA_RECURSOS . " WHERE codigo = ?";
                 

@@ -1,7 +1,7 @@
 <?php
 session_start();
     require_once('configuracionDB.php');
-    $sql = "SELECT password,tipo FROM " . TABLA_USUARIO . " WHERE nickname = ?";
+    $sql = "SELECT password,tipo,nombre FROM " . TABLA_USUARIO . " WHERE nickname = ?";
 
     if(isset($_POST["user"])){
         if(!empty($_POST["user"])){
@@ -17,7 +17,7 @@ session_start();
             $identUsuario->execute();
             /* ligar variables de resultado */
 
-            $identUsuario->bind_result($pass,$tipo);
+            $identUsuario->bind_result($pass,$tipo,$nombre);
 
             /* obtener valor */
             $identUsuario->fetch();
@@ -28,6 +28,7 @@ session_start();
                         
 			$_SESSION["usuario"]=$_POST['user'];
                         $_SESSION["tipo"]=$tipo;
+                        $_SESSION["nombreUsuario"]=$nombre;
                         if($tipo==0){
                             echo "<script language=\"javascript\">window.location=\"paginaAdmin.php\"</script>;";
                         }else{

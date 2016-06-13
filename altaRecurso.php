@@ -21,65 +21,63 @@
 		    </style>
         </head>
 	<body>
-		<div id="contenedor_margenes" class="">
-			<div id="contenedor" class="">
-				<div id="cabecera" class="">
-					<h1 id="cab_inf">Ciencias de la Computación e Inteligencia Artificial</h1>
-					<div id="formularios">	
-					  
-					  			
-						<span class="separador_enlaces"> | </span>
-						<div class="depto titulo"><span class="titulo_stack">Departamento</span><a href="index.php" id="enlace_stack">Departamento de Ciencias de la Computación e I.A.</a></div>
-						<span class="separador_enlaces"> | </span>
-					</div>
-				</div>
-    	<div id="rastro-idiomas">
-		<div class="language">
-                		</div>
-		<div id="rastro">
-			<ul id="rastro_breadcrumb">
-		</div>
+            <div id="contenedor_margenes" class="">
+		<div id="contenedor" class="">
+                    <div id="cabecera" class="">
+			<h1 id="cab_inf">Ciencias de la Computación e Inteligencia Artificial</h1>
+			<div id="formularios">	
+                            <span class="separador_enlaces"> | </span>
+                            <div class="depto titulo"><span class="titulo_stack">Departamento</span><a href="index.php" id="enlace_stack">Departamento de Ciencias de la Computación e I.A.</a></div>
+                            <span class="separador_enlaces"> | </span>
+			</div>
+                    </div>
+                    <div id="rastro-idiomas">
+                        <div class="language">
+                	</div>
+                        <div id="rastro">
+                            <ul id="rastro_breadcrumb"/>
+                        </div>
+                    </div>
+                    <div id="general">
+                        <div id="menus">
+                            <div id="enlaces_secciones" class="mod-menu_secciones">
+                                <a href="http://www.ugr.es" id="enlace_ugr"><img src="img/logo-ugr.png"></img></a>
+                            </div>
+                            <br/><br/><br/><br/>
+                            <a href=index.php>Pagina principal</a><br/>
+                        </div>
+                        <div id="pagina">
+                            <h1 id="titulo_pagina"><span class="texto_titulo">Recursos Activos</span></h1>
+                        
+                        <div id="contenido" class="sec_interior">
+                            <div class="content_doku">
 
-	</div>
-          <div id="general">
-        <div id="menus">
-            <div id="enlaces_secciones" class="mod-menu_secciones">
-                <a href="http://www.ugr.es" id="enlace_ugr"><img src="img/logo-ugr.png"></img></a>
+                                <form name="formIncribirseRecurso" action="apuntarseRecurso.php" method="post" onsubmit="validarDni()">
+                                    <label class="labelIden" for="codigoRecurso">Codigo Recurso:</label>
+                                    <input class="imputIden" type="text" name="codigoRecurso" id="codigoRecurso" value="<?php 
+                                                if(isset($_POST['codigo'])) echo $_POST['codigo'];
+                                                else echo "";
+                                            ?>" />
+                                    <br/>
+                                    <label class="labelIden" for="DNIAlumno">DNI Alumno:</label>
+                                    <input class="imputIden" type="text" name="DNIAlumno" id="dni" value="" />
+                                    <br/>
+                                    <input class="labelIden" type="submit" value="Enviar"/><br/>
+                                </form>
+
+
+                                <p id="barra"></p><br/> 
+
+                            </div>
+
+                            <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+                            <script type="text/javascript">_uacct = "UA-2290740-1";urchinTracker();</script>
+
+                        </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <a href=index.php>Pagina principal</a><br/>
-
-        </div>
-        <div id="pagina">
-            <h1 id="titulo_pagina"><span class="texto_titulo">Recursos Activos</span></h1>
-        </div>
-        <div id="contenido" class="sec_interior">
-            
-
-                <form name="formIncribirseRecurso" id="Identificarse" action="paginaAdmin.php" method="post" onsubmit="validarDni()">
-                    <label class="labelIden" for="codigoRecurso">Codigo Recurso:</label>
-                    <input class="imputIden" type="text" name="codigoRecurso:" id="codigoRecurso" value="" />
-                    <br/>
-                    <label class="labelIden" for="DNIAlumno">DNI Alumno:</label>
-                    <input class="imputIden" type="text" name="DNIAlumno" id="dni" value="" />
-                    <br/>
-                    <input class="imputIden" class="boton" type="submit" value="Enviar"/><br/>
-                </form>
-
-
-                <p id="barra"></p><br/> 
-
-
-
-                <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
-                <script type="text/javascript">_uacct = "UA-2290740-1";urchinTracker();</script>
-
-        </div>
-      
 	</body>
     </html>
     

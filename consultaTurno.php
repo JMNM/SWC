@@ -60,7 +60,40 @@
       <div id="contenido" class="sec_interior">
 	<div class="content_doku">
         
-            <p>Quedan x usuarios por delante.</p>
+            <form name="formIncribirseRecurso" action="consultaTurno.php" method="post" onsubmit="validarDni()">
+                <label class="labelIden" for="codigoRecurso2">Codigo Recurso:</label>
+                <input class="imputIden" type="text" name="codigoRecurso2" id="codigoRecurso" value="<?php 
+                            if(isset($_POST['codigoRecurso'])) echo $_POST['codigoRecurso'];
+                            else if(isset($_POST['codigoRecurso2'])) echo $_POST['codigoRecurso2'];
+                            else echo "";
+                        ?>" />
+                <br/>
+                <label class="labelIden" for="DNIAlumno">DNI Alumno:</label>
+                <input class="imputIden" type="text" name="DNIAlumno" id="dni" value="" />
+                <br/>
+                <input class="labelIden" type="submit" value="Enviar"/><br/>
+            </form>
+            
+            <?php 
+                if(isset($_POST['codigoRecurso2'])){
+                require_once('configuracionDB.php');
+                $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
+               
+                $sql = "SELECT turno FROM lista" . $_POST['codigoRecurso2'] . " WHERE codigo = ".$_POST['DNIAlumno'];
+                
+                //$conexion->query("SET NAMES 'utf8'");
+                if ($resul = $conexion->query($sql)){
+                    if($fila = $resul->fetch_row()){
+                        echo "<p>Hay aproximadamente ".($fila[0]-($fila[0]%10))." personas por delente";
+                        echo "<br/><a href=index.php> Volver</a>";
+                    }
+                }else{
+                    echo "El usuario no se ha encontrado";
+                    echo "<br/><a href=index.php> Volver</a>";
+                }
+                $conexion->close();
+                }
+            ?>
         
             <p id="barra"></p><br/> 
             
