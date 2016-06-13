@@ -1,4 +1,30 @@
-  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php
+        require_once('configuracionDB.php');
+                
+                $consultaNumReg="SELECT COUNT(*) FROM ".TABLA_RECURSOS;
+                $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
+                /* comprobar la conexión */
+                if (mysqli_connect_errno()) {
+                    //echo "Fallo de conexión";
+                    //exit();
+                }
+                $numC=$conexion->query($consultaNumReg);
+                $colum = $numC->fetch_row();
+                $numC->close();
+                $conexion->close();
+                
+                
+                
+                for($j=0;$j<$colum[0];$j++){
+                    if(isset($_POST[$j])){
+                        if(!empty($_POST[$j])){
+                            $cod_consulta=$_POST["codigo".$j];
+                            setcookie('codigo', $cod_consulta, time() +  24 * 60 * 60);
+                        }
+                    }
+                }
+        ?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" >
 	<head>
             <script type="text/javascript" src="funciones.js"></script>
@@ -49,50 +75,13 @@
         
         <br/>
         <br/>
-        <?php
-        require_once('configuracionDB.php');
-                
-                $consultaNumReg="SELECT COUNT(*) FROM ".TABLA_RECURSOS;
-                $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
-                /* comprobar la conexión */
-                if (mysqli_connect_errno()) {
-                    echo "Fallo de conexión";
-                    //exit();
-                }
-                $numC=$conexion->query($consultaNumReg);
-                $colum = $numC->fetch_row();
-                $numC->close();
-                $conexion->close();
-                
-                
-                
-                for($j=0;$j<$colum[0];$j++){
-                    if(isset($_POST[$j])){
-                        if(!empty($_POST[$j])){
-                            $cod_consulta=$_POST["codigo".$j];
-                        }
-                    }
-                }
-        ?>
-        <br/>
-        <br/>
-        <?php
-            echo "<form action=\"altaRecurso.php\" method=\"post\">"
-                    . "<input type=\"hidden\" name=\"codigo\" value = \"".$cod_consulta."\" ></input>"
-                    . "<input type=\"submit\" name=\"submit\" value=\"Inscribirse al Recurso\"></input>"
-                    . "</from><br/><br/>";
-            
-            echo "<form action=\"bajaRecurso.php\" method=\"post\">"
-                    . "<input type=\"hidden\" name=\"codigo\" value = \"".$cod_consulta."\" ></input>"
-                    . "<input type=\"submit\" name=\"submit\" value=\"Borrarse del Recurso\"></input>"
-                    . "</from><br/><br/>";
         
-            echo "<form action=\"consultarTurno.php\" method=\"post\">"
-                    . "<input type=\"hidden\" name=\"codigoRecurso\" value = \"".$cod_consulta."\" ></input>"
-                    . "<input type=\"submit\" name=\"submit\" value=\"Consultar Turno\"></input>"
-                    . "</from><br/><br/>";
-       
-        ?>
+        <br/>
+        <br/>
+            <a href="altaRecurso.php">Inscribirse al Recurso</a><br/><br/>
+            <a href="bajaRecurso.php">Borrarse del Recurso</a><br/><br/>
+            <a href="consultaTurno.php">Consultar Turno</a><br/><br/>
+             
           </div>
         <div id="pagina">
       <h1 id="titulo_pagina"><span class="texto_titulo"></span></h1>

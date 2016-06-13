@@ -52,7 +52,7 @@
         <br/>
         <br/>
             
-            <input class="boton" type="submit" value="Dar de baja Recurso"/><br/>
+        <a href="index.php">Pagina principal</a><br/>
 
           </div>
         <div id="pagina">
@@ -63,7 +63,7 @@
             <form name="formIncribirseRecurso" action="consultaTurno.php" method="post" onsubmit="validarDni()">
                 <label class="labelIden" for="codigoRecurso2">Codigo Recurso:</label>
                 <input class="imputIden" type="text" name="codigoRecurso2" id="codigoRecurso" value="<?php 
-                            if(isset($_POST['codigoRecurso'])) echo $_POST['codigoRecurso'];
+                            if(isset($_COOKIE['codigo'])) echo $_COOKIE['codigo'];
                             else if(isset($_POST['codigoRecurso2'])) echo $_POST['codigoRecurso2'];
                             else echo "";
                         ?>" />
@@ -78,8 +78,8 @@
                 if(isset($_POST['codigoRecurso2'])){
                 require_once('configuracionDB.php');
                 $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
-               
-                $sql = "SELECT turno FROM lista" . $_POST['codigoRecurso2'] . " WHERE codigo = ".$_POST['DNIAlumno'];
+                
+                $sql = "SELECT turno FROM lista" . strtolower($_POST['codigoRecurso2']) . " WHERE dni = '".$_POST['DNIAlumno']."'";
                 
                 //$conexion->query("SET NAMES 'utf8'");
                 if ($resul = $conexion->query($sql)){

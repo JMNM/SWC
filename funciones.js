@@ -66,7 +66,9 @@ function nif(dni) {
     
     if(!(nif(campoTres))){
         alert('Dni erroneo, la letra del NIF no se corresponde');
+        return false;
     }
+    return true;
  }
  
  function validarRecurso(){
