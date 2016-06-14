@@ -60,7 +60,7 @@
 	      <label id="enviar_login_widget" for="submit_login_widget" class="enviar_login enviar_login_widget">
 		<input src="img/transp.gif" alt="enviar datos de identificación" name="submit" id="submit_login_widget" class="image-enviar" type="image" />
 	      </label>
-	      <div style="float:right; margin-top:5px;"><a id="forgot" href="https://decsai.ugr.es/index.php?p=forgotpasswd&amp;action=forgot">¿Olvidó su contraseña?</a></div>
+	     
 	      <span id="login_error_widget"> </span>
 	    </div>
 	</form>

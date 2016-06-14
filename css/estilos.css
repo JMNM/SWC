@@ -1989,8 +1989,8 @@ div#login_form_widget,div#login_form_widget_doku{background-position:top left;ba
 div#login_form_widget span.titulo_login,div#login_form_widget_doku span.titulo_login{text-transform:uppercase;color:#f4f4f4;border-color:#ffffff}
 div#login_form_widget label span,div#login_form_widget_doku label span{font-size:10px;color:#ffffff}
 div#login_form_widget label,div#login_form_widget_doku label,div#login_form_widget span.info,div#login_form_widget_doku span.info{background-position:0 4px}
-div#login_form_widget input#submit_login_widget,div#login_form_widget_doku input#submit_login_widget_doku{background-image:url(../img/interior/login-enviar_off.png)}
-div#login_form_widget input#submit_login_widget:hover,div#login_form_widget_doku input#submit_login_widget_doku:hover{background-image:url(../img/interior/login-enviar_on.png)}
+div#login_form_widget input#submit_login_widget,div#login_form_widget_doku input#submit_login_widget_doku{background-image:url(../img/login-enviar_off.png)}
+div#login_form_widget input#submit_login_widget:hover,div#login_form_widget_doku input#submit_login_widget_doku:hover{background-image:url(../img/login-enviar_on.png)}
 div#login_form_widget label#login_widget input,div#login_form_widget_doku label#login_widget_doku input,div#login_form_widget label#password_widget input,div#login_form_widget_doku label#password_widget_doku input{font-size:10px;color:#336666}
 div#login_form_widget span.info strong.lastaccess,div#login_form_widget_doku span.info strong.lastaccess{white-space:nowrap}
 div#login_form_widget a{color:#FFF}

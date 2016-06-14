@@ -26,7 +26,7 @@
     }
     
     function Apellidos(){
-        var filtro = /^[A-Za-z\b]{1,40}$/;
+        var filtro = /^([A-Za-z]|\s){1,40}$/;
         var campoDos = document.getElementById("apellidos").value;
         
         if((!campoDos.match(filtro)) || campoDos === null || campoDos.length < 1|| campoDos.length > 40){

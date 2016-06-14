@@ -84,10 +84,12 @@
 
                     $sql_delete="DELETE FROM " . TABLA_RECURSOS . " WHERE codigo= '".$_POST['codigoRecurso']."'";
                     $sql_drop="DROP TABLE lista".strtolower($_POST['codigoRecurso']);
-
+                    $sql_delete_turno="DELETE FROM " . TABLA_TURNO . " WHERE codigo_recurso= '".$_POST['codigoRecurso']."'";
+                    
                     //$conexion->query("SET NAMES 'utf8'");
                     if ($conexion->query($sql_delete)){
                         $conexion->query($sql_drop);
+                        $conexion->query($sql_delete_turno);
                         echo "El recurso se ha borrado";
                         if($_SESSION['tipo']==0){
                             echo "<br/><a href=paginaAdmin.php> Volver</a>";
