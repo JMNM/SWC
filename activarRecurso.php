@@ -29,12 +29,15 @@
                 var listaAsistentes=new Array();
                 var listaEspera=new Array();
                 var actual=new Array();
+                var recurso;
             
             </script>
             <?php
                 require_once('configuracionDB.php');
                 $sql = "SELECT codigoUsuario,DNI,turno FROM lista".$_GET['codrecurso'];
-
+                echo "<script type=\"text/javascript\"> "
+                                . "recurso=\"".$_GET['codrecurso']."\";"
+                                ."</script>";
                 $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
 
                 /* comprobar la conexión */
@@ -218,7 +221,11 @@
                     }
                     generaListaEspera()
                 }
-                
+                function enviarGet()
+                {
+                    
+                    //location.href="actualizarTurno.php?dni="+actual[0]+"&recurso="+recurso+"";
+                }
             </script>
         </head>
 	<body onload="generaLista()">
@@ -323,17 +330,13 @@
                     
                 </tbody>
             </table>
+            <iframe name="miiframe"></iframe>
+            <a href="javascript:enviarGet()" onclick="Siguiente()" target="miiframe"><button id="botonSig">Siguiente</button></a>
             
-            <button id="botonSig" onclick="Siguiente()">Siguiente</button>
             <button id="botonEspera" onclick="Espera()">Espera</button>
             <button id="botonAtendido" onclick="Atendido()">Atendido</button>
             
-            
-    
-    	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
-	<script type="text/javascript">_uacct = "UA-2290740-1";urchinTracker();</script>
-
-				    
+          
 			    </div>
 		    </div>
       

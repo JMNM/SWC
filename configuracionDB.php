@@ -7,4 +7,5 @@
     define("TABLA_USUARIO", "profesionales" );
     define("TABLA_RECURSOS", "recursos" );
     define("TABLA_CITAS","citas");
+    define("TABLA_TURNO", "turno");
 ?>
