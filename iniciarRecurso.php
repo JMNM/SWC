@@ -67,15 +67,13 @@
         ?>
         </div>
         <div id="pagina">
-      <h1 id="titulo_pagina"><span class="texto_titulo">Modificar Recurso</span></h1>
+      <h1 id="titulo_pagina"><span class="texto_titulo">Activar Recurso</span></h1>
       <div id="contenido" class="sec_interior">
 	<div class="content_doku">
             
             <?php
                 require_once('configuracionDB.php');
                 if($_SESSION['tipo']==0){
-                    $sql = "SELECT codigo FROM " . TABLA_RECURSOS;
-                }else{
                     $sql = "SELECT codigo FROM " . TABLA_RECURSOS . " WHERE profesor='". $_SESSION['nombreUsuario']."'";
                 }
                 $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
@@ -89,7 +87,7 @@
                 /* ligar variables de resultado */
                 if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
                     //$i=0;
-                    echo "<form name=\"formSelecRecu\" action=\"modificarRecurso.php\" method=\"get\">";
+                    echo "<form name=\"formSelecRecu\" action=\"activarRecurso.php\" method=\"get\">";
                     echo "<label class=\"labelIden\" for=\"codrecurso\">Recurso a modificar: </label> "
                                 ." <select id=\"codrecurso\" class=\"imputIden\" name=\"codrecurso\">";
                     while ($fila = $resultado->fetch_row()) {
@@ -114,7 +112,7 @@
                     /* liberar el conjunto de resultados */
                     $resultado->close();
                 }else{
-                    echo "<p>No hay Recursos para modifocar</p>";
+                    echo "<p>Antes de activar un recurso debe crearlo</p>";
                 }
                 //$identUsuario->bind_result($pass,$tipo);
 
@@ -123,58 +121,6 @@
                 $conexion->close();
                           
             ?>
-            <form name="formUsuario" disabled="true" id="formModificarRecu" action="actualizarRecurso.php" method="post" onsubmit="validarFormulario()">
-            <?php
-            if(isset($_GET['codrecurso'])){
-                require_once('configuracionDB.php');
-                $sql = "SELECT nombre,asignatura,fecha,duracion,hora_inicio,lugar FROM " . TABLA_RECURSOS . " WHERE codigo='". $_GET['codrecurso']."'" ;
-
-                $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
-
-                /* comprobar la conexión */
-                if (mysqli_connect_errno()) {
-                    echo "Fallo de conexión";
-                    //exit();
-                }
-
-                /* ligar variables de resultado */
-                if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
-                    
-                    if($fila = $resultado->fetch_row()) {
-                        //printf ("(%s) (%s) (%s)\n", $fila[0], $fila[1], $fila[2]);
-                        echo "<input type=\"hidden\" name=\"codigo\" value=\"".$_GET['codrecurso']."\">";
-                        echo "<label class=\"labelIden\" for=\"nombre\">Nombre:</label>"
-                                ."<input class=\"imputIden\" type=\"text\" name=\"nombre\" id=\"nombre\" value=\"".$fila[0]."\" onfocusout=\"Nombre()\" /> <br/>";
-                        echo "<label class=\"labelIden\" for=\"asignatura\">Asignatura:</label>"
-                                ."<input class=\"imputIden\" type=\"text\" name=\"asignatura\" id=\"asignatura\" value=\"".$fila[1]."\" onfocusout=\"Asignatura()\" /><br/>";
-                        echo "<label class=\"labelIden\" for=\"fecha\">Fecha:</label>"
-                            ."<input class=\"imputIden\" type=\"date\" name=\"fecha\" id=\"fecha\" value=\"".$fila[2]."\" /><br/>";
-                        echo "<label class=\"labelIden\" for=\"hora\">Hora inicio:</label>"
-                            ."<input class=\"imputIden\" type=\"time\" name=\"hora\" id=\"hora\" value=\"".$fila[3]."\" /><br/>";
-                        echo "<label class=\"labelIden\" for=\"duracion\">Duracion:</label>"
-                            ."<input class=\"imputIden\" type=\"number\" name=\"duracion\" id=\"duracion\" value=\"".$fila[4]."\" onfocusout=\"Duracion()\" /><br/><br/>";
-                        echo "<label class=\"labelIden\" for=\"lugar\">Lugar:</label>"
-                            ."<input class=\"imputIden\" type=\"text\" name=\"lugar\" id=\"lugar\" value=\"".$fila[5]."\" onfocusout=\"Lugar()\" /><br/><br/>";
-            
-                        
-                        
-                    }
-                    echo "<input class=\"labelIden\" type=\"submit\" value=\"Modificar\"/><br/>";
-                    
-                    /* liberar el conjunto de resultados */
-                    $resultado->close();
-                }else{
-                    echo "<p>No tiene recursos para modifocar</p>";
-                }
-                //$identUsuario->bind_result($pass,$tipo);
-
-                /* obtener valor */
-                //$identUsuario->fetch();
-                $conexion->close();
-            }            
-            ?>
-            
-        </form>
             
     
     	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
@@ -186,4 +132,3 @@
       
 	    </body>
     </html>
-    

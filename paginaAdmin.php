@@ -67,6 +67,8 @@
         <br/>
         <a href="modificarRecurso.php">Modificar Recurso</a><br/>
         <br/>
+        <a href="iniciarRecurso.php">Iniciar Recurso</a><br/>
+        <br/>
         <?php
             echo "<p>Se ha identificado como ".$_SESSION['usuario']."</p>";
             echo "<a href=cerrarSesion.php>Cerrar Sesión</a>";
