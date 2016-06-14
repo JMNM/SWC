@@ -224,6 +224,7 @@
                 function enviarGet()
                 {
                     
+                    window.open("actualizarTurno.php?cod="+actual[1]+"&recurso="+recurso+"","actualizar turno bd");
                     //location.href="actualizarTurno.php?dni="+actual[0]+"&recurso="+recurso+"";
                 }
             </script>
