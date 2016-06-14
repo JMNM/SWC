@@ -81,7 +81,7 @@
             <a href="altaRecurso.php">Inscribirse al Recurso</a><br/><br/>
             <a href="bajaRecurso.php">Borrarse del Recurso</a><br/><br/>
             <a href="consultaTurno.php">Consultar Turno</a><br/><br/>
-             
+            <a href="index.php">Vorver</a><br/><br/>
           </div>
         <div id="pagina">
       <h1 id="titulo_pagina"><span class="texto_titulo"></span></h1>
@@ -91,7 +91,7 @@
             <?php
                 
                 
-                $sql = "SELECT nombre,codigo,asignatura,fecha,duracion,hora_inicio,profesor FROM " . TABLA_RECURSOS . " WHERE codigo = ?";
+                $sql = "SELECT nombre,codigo,asignatura,fecha,duracion,hora_inicio,lugar,profesor FROM " . TABLA_RECURSOS . " WHERE codigo = ?";
                 
                 if(isset($cod_consulta)){
                     if(!empty($cod_consulta)){
@@ -111,7 +111,7 @@
                         $obtenerR->execute();
                         /* ligar variables de resultado */
 
-                        $obtenerR->bind_result($nombreR,$codigoR, $asignaturaR,$fechaR,$duracionR,$horainicioR, $profesorR);
+                        $obtenerR->bind_result($nombreR,$codigoR, $asignaturaR,$fechaR,$duracionR,$horainicioR, $lugarR,$profesorR);
                          
                         /* obtener valor */
                         if($obtenerR->fetch()){
@@ -128,6 +128,7 @@
                         $duracionR="no encontrado";
                         $horainicioR="no encontrado";
                         $profesorR="no encontrado";
+                    $lugarR="no encontrado";
                     }
                 }else{
                     $nombreR="no encontrado";
@@ -137,6 +138,7 @@
                     $duracionR="no encontrado";
                     $horainicioR="no encontrado";
                     $profesorR="no encontrado";
+                    $lugarR="no encontrado";
                 }
             ?>
                 
@@ -177,6 +179,10 @@
                     <tr>
                         <td>Duración:</td>
                         <?php echo "<td>".$duracionR."</td>"; ?> 
+                    </tr>
+                    <tr>
+                        <td>Lugar:</td>
+                        <?php echo "<td>".$lugarR."</td>"; ?> 
                     </tr>
                     
                 </tbody>

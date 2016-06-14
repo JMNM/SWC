@@ -62,20 +62,20 @@
         
             <form name="formIncribirseRecurso" action="consultaTurno.php" method="post" onsubmit="validarDni()">
                 <label class="labelIden" for="codigoRecurso2">Codigo Recurso:</label>
-                <input class="imputIden" type="text" name="codigoRecurso2" id="codigoRecurso" value="<?php 
+                <input class="imputIden" type="text" name="codigoRecurso2" id="codigo" value="<?php 
                             if(isset($_COOKIE['codigo'])) echo $_COOKIE['codigo'];
                             else if(isset($_POST['codigoRecurso2'])) echo $_POST['codigoRecurso2'];
                             else echo "";
-                        ?>" />
+                        ?>" onfocusout="Codigo()"/>
                 <br/>
                 <label class="labelIden" for="DNIAlumno">DNI Alumno:</label>
-                <input class="imputIden" type="text" name="DNIAlumno" id="dni" value="" />
+                <input class="imputIden" type="text" name="DNIAlumno" id="dni" value="" onfocusout="validarDni()"/>
                 <br/>
                 <input class="labelIden" type="submit" value="Enviar"/><br/>
             </form>
             
             <?php 
-                if(isset($_POST['codigoRecurso2'])){
+                if(isset($_POST['codigoRecurso2']) && isset($_POST['DNIAlumno'])){
                 require_once('configuracionDB.php');
                 $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
                 
@@ -92,6 +92,9 @@
                     echo "<br/><a href=index.php> Volver</a>";
                 }
                 $conexion->close();
+                }else{
+                    echo "Los datos no son correctos";
+                    echo "<br/><a href=index.php> Volver</a>";
                 }
             ?>
         

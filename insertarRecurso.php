@@ -3,7 +3,7 @@
     require_once('configuracionDB.php');
     echo "<p>".$_POST['fecha']."</p>";
     $sql = "INSERT INTO ".TABLA_RECURSOS." VALUES('".$_POST['nombreRecurso']."','".$_POST['codigo']."','".$_POST['asignatura'].
-			"', '".$_POST['fecha']."', ".$_POST['duracion'].", '".$_POST['hora'].":00','".$_SESSION['nombreUsuario']."')";
+			"', '".$_POST['fecha']."', ".$_POST['duracion'].", '".$_POST['hora'].":00','".$_POST['lugar']."','".$_SESSION['nombreUsuario']."')";
     $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
     /* comprobar la conexión */
     if (mysqli_connect_errno()) {
@@ -23,12 +23,20 @@
             $sql_rm = "DELETE FROM ".TABLA_RECURSOS." WHERE codigo=".$_POST['codigo']."";
             $conexion->query($sql_rm);
             echo "Error al crear la tabla del recurso";
-            echo "<br/><a href=paginaAdmin.php> Volver</a>";
+           if($_SESSION['tipo']==0){
+                echo "<br/><a href=paginaAdmin.php> Volver</a>";
+            }else {
+                echo "<br/><a href=paginaProfesor.php> Volver</a>";
+            }
         }
         
     }else{
         echo "El recurso ya existe";
-        echo "<br/><a href=paginaAdmin.php> Volver</a>";
+        if($_SESSION['tipo']==0){
+            echo "<br/><a href=paginaAdmin.php> Volver</a>";
+        }else {
+            echo "<br/><a href=paginaProfesor.php> Volver</a>";
+        }
     }
     $conexion->close();
 ?>

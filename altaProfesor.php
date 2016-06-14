@@ -65,25 +65,25 @@
             <form name="formUsuario" action="insertarProf.php" method="post" >
                 
             <label class="labelIden" for="nombre">Nombre:</label>
-            <input onfocusout="nombre()" class="imputIden" type="text" name="nombre" id="nombre" value="" /> <br/>
+            <input class="imputIden" type="text" name="nombre" id="nombre" value=""  onfocusout="Nombre()"/> <br/>
             
             <label class="labelIden" for="apellidos">Apellidos:</label>
-            <input onfocusout="apellidos()" class="imputIden" type="text" name="apellidos" id="apellidos" value="" /><br/>
+            <input class="imputIden" type="text" name="apellidos" id="apellidos" value=""  onfocusout="Apellidos()"/><br/>
             
             <label class="labelIden" for="DNI">DNI:</label>
-            <input onfocusout="validarDni()" class="imputIden" type="text" name="DNI" id="dni" value="" /><br/>
+            <input class="imputIden" type="text" name="DNI" id="dni" value=""  onfocusout="validarDni()"/><br/>
            
             <label class="labelIden" for="nickname">Nick-name:</label>
-            <input onfocusout="nickName()" class="imputIden" type="text" name="nickname" id="nickname" value="" /><br/>
+            <input class="imputIden" type="text" name="nickname" id="nickname" value=""  onfocusout="nickName()"/><br/>
             
             <label class="labelIden" for="contrasenia">Contraseña:</label>
-            <input onfocusout="contrasenia()" class="imputIden" type="password" name="contrasenia" id="contrasenia" value="" /><br/>
+            <input class="imputIden" type="password" name="contrasenia" id="contrasenia" value=""  onfocusout="Contrasenia()"/><br/>
             
             <label class="labelIden" for="confirmacontrasenia">Confirmar Contraseña:</label>
-            <input onfocusout="confirmaContrasenia()" class="imputIden" type="password" name="confirmacontrasenia" id="confirmacontrasenia" value="" /><br/>
+            <input class="imputIden" type="password" name="confirmacontrasenia" id="confirmacontrasenia" value=""  onfocusout="ConfirmaContrasenia()"/><br/>
             
             <label class="labelIden" for="email">Email:</label>
-            <input onfocusout="email()" class="imputIden" type="text" name="email" id="email" value="" /><br/>
+            <input class="imputIden" type="text" name="email" id="email" value="" onfocusout="Email()" /><br/>
             
             <label class="labelIden" for="tipo">Tipo de usuario: </label>
             <select id="tipo" class="imputIden" name="tipo">

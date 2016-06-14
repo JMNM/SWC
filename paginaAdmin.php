@@ -65,7 +65,7 @@
         <br/>
         <a href="borraRecurso.php">Dar de Baja Recurso</a><br/>
         <br/>
-        <a href="inscripcionRecurso.php">Modificar Recurso</a><br/>
+        <a href="modificarRecurso.php">Modificar Recurso</a><br/>
         <br/>
         <?php
             echo "<p>Se ha identificado como ".$_SESSION['usuario']."</p>";
@@ -159,6 +159,9 @@
                         <th>
                             Hora inicio
                         </th>
+                        <th>
+                            Lugar
+                        </th>
                          <th>
                             Profesor 
                         </th>
@@ -167,7 +170,7 @@
                 <tbody>
                     <?php
                         require_once('configuracionDB.php');
-                        $sql = "SELECT nombre,codigo,asignatura,fecha,duracion,hora_inicio,profesor FROM " . TABLA_RECURSOS;
+                        $sql = "SELECT nombre,codigo,asignatura,fecha,duracion,hora_inicio,lugar,profesor FROM " . TABLA_RECURSOS;
 
                         $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
 
@@ -189,6 +192,7 @@
                                         . "<td>".$fila[4]."</td>"
                                         . "<td>".$fila[5]."</td>"
                                         . "<td>".$fila[6]."</td>"
+                                        . "<td>".$fila[7]."</td>"
                                         . "</td></tr>";
                                         $i++;
                             }

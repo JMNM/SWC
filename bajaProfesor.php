@@ -68,7 +68,7 @@
       
             <form name="formIncribirseRecurso" id="inscribirRecurso" action="bajaProfesor.php" method="post" onsubmit="validarDni()">
             <label class="labelIden" for="dniProfesor">DNI Profesor:</label>
-            <input class="imputIden" type="text" name="dniProf" id="dni" value="" /> <br/>            
+            <input class="imputIden" type="text" name="dniProf" id="dni" value="" onfocusout="validarDni()"/> <br/>            
                       
                <br/>
                 <input class="labelIden" type="submit" value="Enviar"/><br/>
@@ -86,12 +86,28 @@
                         echo "<p>".$fila[0]."</p>";
                         $sql_delete="DELETE FROM " . TABLA_USUARIO . " WHERE dni = '".$_POST['dniProf']."'";
                         $conexion->query($sql_delete);
+                        echo "El profesor se ha borrado";
+                        if($_SESSION['tipo']==0){
+                            echo "<br/><a href=paginaAdmin.php> Volver</a>";
+                        }else {
+                            echo "<br/><a href=paginaProfesor.php> Volver</a>";
+                        }
+                    }else{
+                        echo "El usuario no se ha encontrado";
+                        if($_SESSION['tipo']==0){
+                            echo "<br/><a href=paginaAdmin.php> Volver</a>";
+                        }else {
+                            echo "<br/><a href=paginaProfesor.php> Volver</a>";
+                        }
                     }
-                    echo "El profesor se ha borrado";
-                    echo "<br/><a href=index.php> Volver</a>";
+                    
                 }else{
                     echo "El usuario no se ha encontrado";
-                    echo "<br/><a href=index.php> Volver</a>";
+                    if($_SESSION['tipo']==0){
+                        echo "<br/><a href=paginaAdmin.php> Volver</a>";
+                    }else {
+                        echo "<br/><a href=paginaProfesor.php> Volver</a>";
+                    }
                 }
                 $conexion->close();
                 }

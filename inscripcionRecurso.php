@@ -50,7 +50,14 @@
                 <a href="http://www.ugr.es" id="enlace_ugr"><img src="img/logo-ugr.png"></img></a>
             </div>
         <br/><br/><br/><br/>
-        <a href=paginaAdmin.php>Volver</a><br/><br/>
+        <a href=<?php
+            if($_SESSION['tipo']==0){
+                echo "paginaAdmin.php";
+            }else {
+                echo "paginaProfesor.php";
+            }
+            ?>>Volver
+        </a><br/><br/>
         <?php
             echo "<p>Se ha identificado como ".$_SESSION['usuario']."</p>";
             echo "<a href=cerrarSesion.php>Cerrar Sesión</a>";
@@ -65,19 +72,22 @@
             
             <form name="formUsuario" action="insertarRecurso.php" method="post" onsubmit="validarFormulario()">
             <label class="labelIden" for="nombreRecurso">Nombre Recurso:</label>
-            <input class="imputIden" type="text" name="nombreRecurso" id="nombreRecursonombre" value="" /> <br/>           
+            <input class="imputIden" type="text" name="nombreRecurso" id="nombre" value="" onfocusout="Nombre()"/> <br/>           
             <label class="labelIden" for="fecha">Fecha:</label>
             <input class="imputIden" type="date" name="fecha" min="2016-01-01" id="fecha" value="" /><br/>
             <label class="labelIden" for="hora">Hora inicio:</label>
             <input class="imputIden" type="time" name="hora" id="hora" value="" /><br/>
             
             <label class="labelIden" for="duracion">Duración:</label>
-            <input class="imputIden" type="number" name="duracion" value="" /><br/>
+            <input class="imputIden" type="number" id="duracion" name="duracion" value="" onfocusout="Duracion()"/><br/>
+           
+             <label class="labelIden" for="lugar">Lugar:</label>
+             <input class="imputIden" type="text" name="lugar" id="lugar" value="" onfocusout="Lugar()"/><br/>
              <label class="labelIden" for="codigo">Codigo Recurso:</label>
-             <input class="imputIden" type="text" name="codigo" id="codigo" value="" /><br/>
+             <input class="imputIden" type="text" name="codigo" id="codigo" value="" onfocusout="Codigo()"/><br/>
             
             <label class="labelIden" for="asignatura">Asignatura:</label>
-            <input class="imputIden" type="asignatura" name="asignatura" id="asignatura" value="" /><br/>
+            <input class="imputIden" type="asignatura" name="asignatura" id="asignatura" value="" onfocusout="Asignatura()"/><br/>
                       
                <br/>
                 <input class="labelIden" type="submit" value="Enviar"/><br/>

@@ -47,7 +47,7 @@
                             <a href=index.php>Pagina principal</a><br/>
                         </div>
                         <div id="pagina">
-                            <h1 id="titulo_pagina"><span class="texto_titulo">Recursos Activos</span></h1>
+                            <h1 id="titulo_pagina"><span class="texto_titulo">Inscribirse al recurso</span></h1>
                         
                         <div id="contenido" class="sec_interior">
                             <div class="content_doku">
@@ -57,10 +57,10 @@
                                     <input class="imputIden" type="text" name="codigoRecurso" id="codigoRecurso" value="<?php 
                                                 if(isset($_COOKIE['codigo'])) echo $_COOKIE['codigo'];
                                                 else echo "";
-                                            ?>" />
+                                            ?>" onfocusout="Codigo()"/>
                                     <br/>
                                     <label class="labelIden" for="DNIAlumno">DNI Alumno:</label>
-                                    <input onfocusout="validarDni()" lass="imputIden" type="text" name="DNIAlumno" id="dni" value="" />
+                                    <input class="imputIden" type="text" name="DNIAlumno" id="dni" value="" onfocusout="validarDni()" />
                                     <br/>
                                     <input onclick="" class="labelIden" type="submit" value="Enviar"/><br/>
                                 </form>

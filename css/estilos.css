@@ -58,7 +58,9 @@ label{
     margin-top: 3%;
     padding-top: 1%;
     text-align: right;
+    border-style: solid;
     border-width:1px;
+    border-color:#000;
 }
 
 a, a:visited { 

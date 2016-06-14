@@ -51,7 +51,14 @@
             </div>
         
         <br/><br/><br/><br/>
-        <a href=paginaAdmin.php>Volver</a><br/><br/>
+        <a href=<?php
+            if($_SESSION['tipo']==0){
+                echo "paginaAdmin.php";
+            }else {
+                echo "paginaProfesor.php";
+            }
+            ?>>Volver
+        </a><br/><br/>
         <?php
             echo "<p>Se ha identificado como ".$_SESSION['usuario']."</p>";
             echo "<a href=cerrarSesion.php>Cerrar Sesión</a>";
@@ -63,13 +70,41 @@
       <div id="contenido" class="sec_interior">
 	<div class="content_doku">
       
-            <form name="formIncribirseRecurso" id="inscribirRecurso" action="paginaAdmin.php.php" method="post" onsubmit="validarDni()">
+            <form name="formIncribirseRecurso" id="inscribirRecurso" action="borraRecurso.php" method="post" onsubmit="validarDni()">
             <label class="labelIden" for="codigoRecurso">Codigo Recurso:</label>
-            <input class="formIns" type="text" name="codigoRecurso:" id="codigoRecurso:" value="" /> <br/>            
+            <input class="imputIden" type="text" name="codigoRecurso" id="codigo" value="" onfocusout="Codigo()"/> <br/>            
                       
                <br/>
                 <input class="boton" type="submit" value="Enviar"/><br/>
         </form>
+            <?php 
+                if(isset($_POST['codigoRecurso'])){
+                    require_once('configuracionDB.php');
+                    $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
+
+                    $sql_delete="DELETE FROM " . TABLA_RECURSOS . " WHERE codigo= '".$_POST['codigoRecurso']."'";
+                    $sql_drop="DROP TABLE lista".strtolower($_POST['codigoRecurso']);
+
+                    //$conexion->query("SET NAMES 'utf8'");
+                    if ($conexion->query($sql_delete)){
+                        $conexion->query($sql_drop);
+                        echo "El recurso se ha borrado";
+                        if($_SESSION['tipo']==0){
+                            echo "<br/><a href=paginaAdmin.php> Volver</a>";
+                        }else {
+                            echo "<br/><a href=paginaProfesor.php> Volver</a>";
+                        }
+                    }else{
+                        echo "El recurso no se ha encontrado";
+                        if($_SESSION['tipo']==0){
+                            echo "<br/><a href=paginaAdmin.php> Volver</a>";
+                        }else {
+                            echo "<br/><a href=paginaProfesor.php> Volver</a>";
+                        }
+                    }
+                    $conexion->close();
+                }
+            ?>
             
         
             <p id="barra"></p><br/> 

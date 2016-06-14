@@ -1,4 +1,5 @@
 <?php
+if(isset($_POST['codigoRecurso']) && isset($_POST['DNIAlumno'])){
     require_once('configuracionDB.php');
     $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
     $sql_consulta= "SELECT COUNT(*) FROM lista".$_POST['codigoRecurso'];
@@ -26,4 +27,8 @@
         echo "<br/><a href=index.php> Volver</a>";
     }
     $conexion->close();
+}else{
+        echo "No se a podido inscribir al recurso, datos incorrectos";
+        echo "<br/><a href=index.php> Volver</a>";
+    }
 ?>

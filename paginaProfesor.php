@@ -92,6 +92,9 @@
                         <th>
                             Hora inicio
                         </th>
+                        <th>
+                            Lugar
+                        </th>
                          <th>
                             Profesor 
                         </th>
@@ -100,7 +103,7 @@
                 <tbody>
                     <?php
                         require_once('configuracionDB.php');
-                        $sql = "SELECT nombre,codigo,asignatura,fecha,duracion,hora_inicio,profesor FROM " . TABLA_RECURSOS;
+                        $sql = "SELECT nombre,codigo,asignatura,fecha,duracion,hora_inicio,lugar,profesor FROM " . TABLA_RECURSOS;
 
                         $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
 
@@ -122,6 +125,7 @@
                                         . "<td>".$fila[4]."</td>"
                                         . "<td>".$fila[5]."</td>"
                                         . "<td>".$fila[6]."</td>"
+                                        . "<td>".$fila[7]."</td>"
                                         . "</td></tr>";
                                         $i++;
                             }

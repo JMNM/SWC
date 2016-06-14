@@ -53,27 +53,37 @@
         <br/>
         <br/>
         <br/>
-        <a href=paginaAdmin.php>Volver</a><br/><br/>
+        <a href=<?php
+            if($_SESSION['tipo']==0){
+                echo "paginaAdmin.php";
+            }else {
+                echo "paginaProfesor.php";
+            }
+            ?>>Volver
+        </a><br/><br/>
         <?php
             echo "<p>Se ha identificado como ".$_SESSION['usuario']."</p>";
             echo "<a href=cerrarSesion.php>Cerrar Sesión</a>";
         ?>
         </div>
         <div id="pagina">
-      <h1 id="titulo_pagina"><span class="texto_titulo">Modificar Profesor</span></h1>
+      <h1 id="titulo_pagina"><span class="texto_titulo">Modificar Recurso</span></h1>
       <div id="contenido" class="sec_interior">
 	<div class="content_doku">
             <script type="text/javascript">
                 function habilitarModi(){
-                    document.getElementById("formModificarProfe").disabled=false;
+                    document.getElementById("formModificarRecu").disabled=false;
         
                     
                 }
             </script>
             <?php
                 require_once('configuracionDB.php');
-                $sql = "SELECT nickname FROM " . TABLA_USUARIO . " WHERE tipo=". 1 ;
-
+                if($_SESSION['tipo']==0){
+                    $sql = "SELECT codigo FROM " . TABLA_RECURSOS;
+                }else{
+                    $sql = "SELECT codigo FROM " . TABLA_RECURSOS . " WHERE profesor='". $_SESSION['nombreUsuario']."'";
+                }
                 $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
 
                 /* comprobar la conexión */
@@ -85,13 +95,13 @@
                 /* ligar variables de resultado */
                 if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
                     //$i=0;
-                    echo "<form name=\"formSelecProfe\" action=\"modificarProfesor.php\" method=\"get\">";
-                    echo "<label class=\"labelIden\" for=\"nickname\">Profesor a modificar: </label> "
-                                ." <select id=\"nickname\" class=\"imputIden\" name=\"nickname\">";
+                    echo "<form name=\"formSelecRecu\" action=\"modificarRecurso.php\" method=\"get\">";
+                    echo "<label class=\"labelIden\" for=\"codrecurso\">Recurso a modificar: </label> "
+                                ." <select id=\"codrecurso\" class=\"imputIden\" name=\"codrecurso\">";
                     while ($fila = $resultado->fetch_row()) {
                         //printf ("(%s) (%s) (%s)\n", $fila[0], $fila[1], $fila[2]);
-                        if(isset($_GET['nickname'])){
-                            if($_GET['nickname']==$fila[0]){
+                        if(isset($_GET['codrecurso'])){
+                            if($_GET['codrecurso']==$fila[0]){
                                 echo " <option value=\"".$fila[0]."\" selected >".$fila[0]."</option>";
                             }else{
                                 echo " <option value=\"".$fila[0]."\">".$fila[0]."</option>";
@@ -119,11 +129,11 @@
                 $conexion->close();
                           
             ?>
-            <form name="formUsuario" disabled="true" id="formModificarProfe" action="actualizarProfe.php" method="post" onsubmit="validarFormulario()">
+            <form name="formUsuario" disabled="true" id="formModificarRecu" action="actualizarRecurso.php" method="post" onsubmit="validarFormulario()">
             <?php
-            if(isset($_GET['nickname'])){
+            if(isset($_GET['codrecurso'])){
                 require_once('configuracionDB.php');
-                $sql = "SELECT nombre,apellidos,email FROM " . TABLA_USUARIO . " WHERE nickname='". $_GET['nickname']."'" ;
+                $sql = "SELECT nombre,asignatura,fecha,duracion,hora_inicio,lugar FROM " . TABLA_RECURSOS . " WHERE codigo='". $_GET['codrecurso']."'" ;
 
                 $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
 
@@ -138,13 +148,19 @@
                     
                     if($fila = $resultado->fetch_row()) {
                         //printf ("(%s) (%s) (%s)\n", $fila[0], $fila[1], $fila[2]);
-                        echo "<input type=\"hidden\" name=\"nickname\" value=\"".$_GET['nickname']."\">";
-                        echo "<label class=\"labelIden\" for=\"name\">Nombre:</label>"
+                        echo "<input type=\"hidden\" name=\"codigo\" value=\"".$_GET['codrecurso']."\">";
+                        echo "<label class=\"labelIden\" for=\"nombre\">Nombre:</label>"
                                 ."<input class=\"imputIden\" type=\"text\" name=\"nombre\" id=\"nombre\" value=\"".$fila[0]."\" onfocusout=\"Nombre()\" /> <br/>";
-                        echo "<label class=\"labelIden\" for=\"apellidos\">Apellidos:</label>"
-                                ."<input class=\"imputIden\" type=\"text\" name=\"apellidos\" id=\"apellidos\" value=\"".$fila[1]."\" onfocusout=\"Apellidos()\"/><br/>";
-                        echo "<label class=\"labelIden\" for=\"email\">Email:</label>"
-                            ."<input class=\"imputIden\" type=\"text\" name=\"email\" id=\"email\" value=\"".$fila[2]."\" onfocusout=\"Email()\"/><br/><br/>";
+                        echo "<label class=\"labelIden\" for=\"asignatura\">Asignatura:</label>"
+                                ."<input class=\"imputIden\" type=\"text\" name=\"asignatura\" id=\"asignatura\" value=\"".$fila[1]."\" onfocusout=\"Asignatura()\" /><br/>";
+                        echo "<label class=\"labelIden\" for=\"fecha\">Fecha:</label>"
+                            ."<input class=\"imputIden\" type=\"date\" name=\"fecha\" id=\"fecha\" value=\"".$fila[2]."\" /><br/>";
+                        echo "<label class=\"labelIden\" for=\"hora\">Hora inicio:</label>"
+                            ."<input class=\"imputIden\" type=\"time\" name=\"hora\" id=\"hora\" value=\"".$fila[3]."\" /><br/>";
+                        echo "<label class=\"labelIden\" for=\"duracion\">Duracion:</label>"
+                            ."<input class=\"imputIden\" type=\"number\" name=\"duracion\" id=\"duracion\" value=\"".$fila[4]."\" onfocusout=\"Duracion()\" /><br/><br/>";
+                        echo "<label class=\"labelIden\" for=\"lugar\">Lugar:</label>"
+                            ."<input class=\"imputIden\" type=\"text\" name=\"lugar\" id=\"lugar\" value=\"".$fila[5]."\" onfocusout=\"Lugar()\" /><br/><br/>";
             
                         
                         

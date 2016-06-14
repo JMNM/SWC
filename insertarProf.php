@@ -12,10 +12,18 @@
     //$conexion->query("SET NAMES 'utf8'");
     if ($conexion->query($sql)){
         echo "Usuario insertado correctamente";
-        echo "<br/><a href=paginaAdmin.php> Volver</a>";
+        if($_SESSION['tipo']==0){
+            echo "<br/><a href=paginaAdmin.php> Volver</a>";
+        }else {
+            echo "<br/><a href=paginaProfesor.php> Volver</a>";
+        }
     }else{
         echo "El usuario ya existe";
-        echo "<br/><a href=paginaAdmin.php> Volver</a>";
+        if($_SESSION['tipo']==0){
+            echo "<br/><a href=paginaAdmin.php> Volver</a>";
+        }else {
+            echo "<br/><a href=paginaProfesor.php> Volver</a>";
+        }
     }
     $conexion->close();
 ?>
