@@ -189,3 +189,7 @@ function nif(dni) {
             return true;
         }
     }
+    
+function compararTurno(a,b){
+    return a[2]-b[2];
+}
