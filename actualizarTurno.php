@@ -68,9 +68,5 @@
         $conexion3->close();
     }     
     
-    
-    
-    
-    
     echo "<script languaje='javascript' type='text/javascript'>window.close();</script>";
 ?>
