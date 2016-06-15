@@ -48,6 +48,7 @@
                 /* ligar variables de resultado */
                 if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
                     $i=0;
+                    //se obtinene la lista de asistentes y se guarda en la variable listaAsistentes de javascript
                     while ($fila = $resultado->fetch_row()) {
                         //printf ("(%s) (%s) (%s)\n", $fila[0], $fila[1], $fila[2]);
                         echo "<script type=\"text/javascript\"> "
@@ -63,7 +64,9 @@
                 $conexion->close();
             ?>
             <script type="text/javascript">
+                //se ordena la lista de asistentes respecto al turno
                 listaAsistentes.sort(compararTurno);
+                //funcion para mostras la listaAsistentes actual en su correspondiente tabla
                 function generaLista(){
                     var tbody=document.getElementById("listaNormal");
                     for(var i=0;i<listaAsistentes.length;i++){
@@ -80,6 +83,7 @@
                         tbody.appendChild(fila);
                     }
                 }
+                //funcion para mostrar la listaEspera actual en su correspondiente tabla
                 function generaListaEspera(){
                     var tbody=document.getElementById("tablaListaEspera");
                     for(var i=0;i<listaEspera.length;i++){
@@ -96,6 +100,7 @@
                         tbody.appendChild(fila);
                     }
                 }
+                //pasar al suguiente
                 function Siguiente(){
                     var turno=0;
                     var espera=false;
@@ -127,6 +132,7 @@
                         actual=listaAsistentes[0];
                         listaAsistentes.shift();
                     }
+                    //si no quedan asistentes se desabilitan los botones
                     if(listaAsistentes.length<=0 && listaEspera.length<=0){
                         document.getElementById("botonSig").disabled=true;
                         document.getElementById("botonEspera").disabled=true;
@@ -134,6 +140,7 @@
                     }
                     ActualizarListaAsistentes();
                 }
+                //poner en espera
                 function Espera(){
                     var turno=-2;
                     var espera=false;
@@ -164,7 +171,7 @@
                     actual=null;
                     ActualizarListaEspera();
                 }
-                
+                // para quitar al que esta siendi atendido y si esta en la listaEspera se elimina
                 function Atendido(){
                     var turno=0;
                     var espera=false;
@@ -195,9 +202,10 @@
                         document.getElementById("botonEspera").disabled=true;
                         document.getElementById("botonAtendido").disabled=true;
                     }
+                    //si no quedan asistentes se desabilitan los botones
                     ActualizarListaEspera();
                 }
-                
+                //se actualiza la talba de lista de asistente
                 function ActualizarListaAsistentes(){
                     var tbody=document.getElementById("listaNormal");
                     var num=tbody.childNodes.length;
@@ -209,6 +217,7 @@
                     }
                     generaLista()
                 }
+                //se actualiza la talba de lista espera
                 function ActualizarListaEspera(){
                     var tbody=document.getElementById("tablaListaEspera");
                     var num=tbody.childNodes.length;
@@ -220,11 +229,11 @@
                     }
                     generaListaEspera()
                 }
+                //funcion para llamar a actualizarTurno que se encargara de introducir
+                //al que tiene el turno en la tabla de la DB turno para que se actualize el modulo de visualizacion.
                 function enviarGet()
                 {
-                    
                     window.open("php/actualizarTurno.php?cod="+actual[1]+"&recurso="+recurso+"","actualizar turno bd");
-                    //location.href="actualizarTurno.php?dni="+actual[0]+"&recurso="+recurso+"";
                 }
             </script>
         </head>
@@ -328,15 +337,19 @@
                     
                 </tbody>
             </table>
+            
+            <!--botones para actualizar las listas, 
+                y en el caso de siguiente actualiza la tabla turno de la Base de datos
+                
+            -->
             <iframe name="miiframe"></iframe>
             <a href="javascript:enviarGet()" onclick="Siguiente()" target="miiframe"><button id="botonSig">Siguiente</button></a>
-            
             <button id="botonEspera" onclick="Espera()">Espera</button>
             <button id="botonAtendido" onclick="Atendido()">Atendido</button>
             
           
-			    </div>
-		    </div>
+            </div>
+        </div>
       
-	    </body>
-    </html>
+    </body>
+</html>

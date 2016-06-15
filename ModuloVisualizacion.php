@@ -43,69 +43,59 @@
             </div>
         </div>
                 
-                <div id="general">
-                        <h1 class="tituloModVisu"><span class="texto_titulo">Lista de Turnos</span></h1>
-                        
-                            <table class="tablaModVisu">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Codigo del Alumno
-                                        </th>
-                                        <th>
-                                            Recurso
-                                        </th>
-                                        <th>
-                                            Codigo Recurso
-                                        </th>
-                                        <th>
-                                            Lugar
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody id="contenidoActualizar">
-                                    <?php
-                                        require_once('php/configuracionDB.php');
-                                        $sql = "SELECT codigo_alumno,nombre_recurso,codigo_recurso,lugar FROM " . TABLA_TURNO;
+        <div id="general">
+            <h1 class="tituloModVisu"><span class="texto_titulo">Lista de Turnos</span></h1>
 
-                                        $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
+                <table class="tablaModVisu">
+                    <thead>
+                        <tr>
+                            <th>
+                                Codigo del Alumno
+                            </th>
+                            <th>
+                                Recurso
+                            </th>
+                            <th>
+                                Codigo Recurso
+                            </th>
+                            <th>
+                                Lugar
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="contenidoActualizar">
+                        <?php
+                            require_once('php/configuracionDB.php');
+                            $sql = "SELECT codigo_alumno,nombre_recurso,codigo_recurso,lugar FROM " . TABLA_TURNO;
 
-                                        /* comprobar la conexión */
-                                        if (mysqli_connect_errno()) {
-                                            echo "Fallo de conexión";
-                                            //exit();
-                                        }
+                            $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
 
-                                        /* ligar variables de resultado */
-                                        if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
-                                            $i=0;
-                                            while ($fila = $resultado->fetch_row()) {
-                                                //printf ("(%s) (%s) (%s)\n", $fila[0], $fila[1], $fila[2]);
-                                                echo "<tr><td>".$fila[0]."</td>"
-                                                        . "<td>".$fila[1]."</td>"
-                                                        . "<td>".$fila[2]."</td>"
-                                                        . "<td>".$fila[3]."</td>"
-                                                        . "</td></tr>";
-                                                        $i++;
-                                            }
+                            /* comprobar la conexión */
+                            if (mysqli_connect_errno()) {
+                                echo "Fallo de conexión";
+                                //exit();
+                            }
 
-                                            /* liberar el conjunto de resultados */
-                                            $resultado->close();
-                                        }
-                                        //$identUsuario->bind_result($pass,$tipo);
+                            /* ligar variables de resultado */
+                            if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
+                                //se obtienen los resultados de la tabla turno
+                                while ($fila = $resultado->fetch_row()) {
+                                    //printf ("(%s) (%s) (%s)\n", $fila[0], $fila[1], $fila[2]);
+                                    echo "<tr><td>".$fila[0]."</td>"
+                                            . "<td>".$fila[1]."</td>"
+                                            . "<td>".$fila[2]."</td>"
+                                            . "<td>".$fila[3]."</td>"
+                                            . "</td></tr>";
+                                }
 
-                                        /* obtener valor */
-                                        //$identUsuario->fetch();
-                                        $conexion->close();
+                                /* liberar el conjunto de resultados */
+                                $resultado->close();
+                            }
 
-
-                                    ?>
-                                </tbody>
-                            </table>
-                            
-                        
-                </div>
-            
-        
-    </body>
+                            $conexion->close();
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </body>
     </html>

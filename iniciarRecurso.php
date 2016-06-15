@@ -73,9 +73,9 @@
             
             <?php
                 require_once('php/configuracionDB.php');
-                if($_SESSION['tipo']==0){
-                    $sql = "SELECT codigo FROM " . TABLA_RECURSOS . " WHERE profesor='". $_SESSION['nombreUsuario']."'";
-                }
+                
+                $sql = "SELECT codigo FROM " . TABLA_RECURSOS . " WHERE profesor='". $_SESSION['nombreUsuario']."'";
+                
                 $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
 
                 /* comprobar la conexión */
@@ -86,7 +86,7 @@
 
                 /* ligar variables de resultado */
                 if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
-                    //$i=0;
+                    //se muestra los recursos a elegir entre los creados por el profesor.
                     echo "<form name=\"formSelecRecu\" action=\"activarRecurso.php\" method=\"get\">";
                     echo "<label class=\"labelIden\" for=\"codrecurso\">Recurso a modificar: </label> "
                                 ." <select id=\"codrecurso\" class=\"imputIden\" name=\"codrecurso\">";
@@ -102,8 +102,6 @@
                             echo " <option value=\"".$fila[0]."\">".$fila[0]."</option>";
                         }
                             
-                        
-                        //$i++;
                     }
                     echo "</select>"
                             . "<input class=\"labelIden\" type=\"submit\" value=\"Seleccionar\"/><br/>"
@@ -114,21 +112,15 @@
                 }else{
                     echo "<p>Antes de activar un recurso debe crearlo</p>";
                 }
-                //$identUsuario->bind_result($pass,$tipo);
-
-                /* obtener valor */
-                //$identUsuario->fetch();
+                
                 $conexion->close();
                           
             ?>
             
     
-    	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
-	<script type="text/javascript">_uacct = "UA-2290740-1";urchinTracker();</script>
-
 				    
-			    </div>
-		    </div>
+             </div>
+	</div>
       
-	    </body>
-    </html>
+    </body>
+</html>

@@ -86,9 +86,11 @@
                     $sql_drop="DROP TABLE lista".strtolower($_POST['codigoRecurso']);
                     $sql_delete_turno="DELETE FROM " . TABLA_TURNO . " WHERE codigo_recurso= '".$_POST['codigoRecurso']."'";
                     
-                    //$conexion->query("SET NAMES 'utf8'");
+                    //se borra el recurso
                     if ($conexion->query($sql_delete)){
+                        //se elimina la tabla de los asistentes al recurso
                         $conexion->query($sql_drop);
+                        //se elimina el tuno de la tabla turno(si existe)
                         $conexion->query($sql_delete_turno);
                         echo "El recurso se ha borrado";
                         if($_SESSION['tipo']==0){
@@ -114,9 +116,9 @@
             
     
 				    
-			    </div>
-		    </div>
+            </div>
+	</div>
       
-	    </body>
-    </html>
+    </body>
+</html>
     

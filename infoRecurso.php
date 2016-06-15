@@ -1,29 +1,29 @@
 <?php
-        require_once('php/configuracionDB.php');
+    require_once('php/configuracionDB.php');
                 
-                $consultaNumReg="SELECT COUNT(*) FROM ".TABLA_RECURSOS;
-                $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
-                /* comprobar la conexión */
-                if (mysqli_connect_errno()) {
-                    //echo "Fallo de conexión";
-                    //exit();
-                }
-                $numC=$conexion->query($consultaNumReg);
-                $colum = $numC->fetch_row();
-                $numC->close();
-                $conexion->close();
-                
-                
-                
-                for($j=0;$j<$colum[0];$j++){
-                    if(isset($_POST[$j])){
-                        if(!empty($_POST[$j])){
-                            $cod_consulta=$_POST["codigo".$j];
-                            setcookie('codigo', $cod_consulta, time() +  24 * 60 * 60);
-                        }
-                    }
-                }
-        ?>  
+    $consultaNumReg="SELECT COUNT(*) FROM ".TABLA_RECURSOS;
+    $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
+    /* comprobar la conexión */
+    if (mysqli_connect_errno()) {
+        //echo "Fallo de conexión";
+        //exit();
+    }
+    //se cuenta el numero de recursos que hay
+    $numC=$conexion->query($consultaNumReg);
+    $colum = $numC->fetch_row();
+    $numC->close();
+    $conexion->close();
+
+    //se comprueba a que recurso se le ha dado a contultar en la pagina index.php y se obtiene el código.
+    for($j=0;$j<$colum[0];$j++){
+        if(isset($_POST[$j])){
+            if(!empty($_POST[$j])){
+                $cod_consulta=$_POST["codigo".$j];
+                setcookie('codigo', $cod_consulta, time() +  24 * 60 * 60);
+            }
+        }
+    }
+?>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" >
 	<head>
@@ -109,14 +109,10 @@
                         $obtenerR= $conexion->prepare($sql);
                         $obtenerR->bind_param('s', $cod_consulta);
                         $obtenerR->execute();
-                        /* ligar variables de resultado */
-
+                       
+                        //se obtienen los resultados en las variables corespondientes
                         $obtenerR->bind_result($nombreR,$codigoR, $asignaturaR,$fechaR,$duracionR,$horainicioR, $lugarR,$profesorR);
-                         
-                        /* obtener valor */
-                        if($obtenerR->fetch()){
-                            
-                        }
+                        $obtenerR->fetch();
                         $obtenerR->close();
                         $conexion->close();
 
@@ -192,9 +188,9 @@
             <p id="barra"></p><br/> 
         
 				    
-			    </div>
-		    </div>
+            </div>
+        </div>
       
-	    </body>
-    </html>
+    </body>
+</html>
     

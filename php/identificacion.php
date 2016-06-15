@@ -9,19 +9,20 @@ session_start();
 
             /* comprobar la conexión */
             if (mysqli_connect_errno()) {
-                //echo "Fallo de conexión";
+                echo "Fallo de conexión";
                 //exit();
             }
             $identUsuario= $conexion->prepare($sql);
             $identUsuario->bind_param('s', $_POST['user']);
             $identUsuario->execute();
+            
             /* ligar variables de resultado */
-
             $identUsuario->bind_result($pass,$tipo,$nombre);
 
             /* obtener valor */
             $identUsuario->fetch();
             $conexion->close();
+            //se comprueba que el password es correcto
             if(isset($_POST["passwd"])){
                 if(!empty($_POST["passwd"])){
                     if($pass==md5($_POST["passwd"])){

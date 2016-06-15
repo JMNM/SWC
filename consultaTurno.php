@@ -81,7 +81,7 @@
 
                     $sql = "SELECT turno FROM lista" . strtolower($_POST['codigoRecurso2']) . " WHERE dni = '".$_POST['DNIAlumno']."'";
 
-                    //$conexion->query("SET NAMES 'utf8'");
+                    //se consulta el turno en la tabla del recurso y se da una posición aproximada
                     if ($resul = $conexion->query($sql)){
                         if($fila = $resul->fetch_row()){
                             if(($fila[0]-($fila[0]%10))>10){

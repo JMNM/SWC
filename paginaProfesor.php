@@ -115,7 +115,7 @@
                             //exit();
                         }
                         
-                        /* ligar variables de resultado */
+                        /* se crea la lista de recursos */
                         if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
                             $i=0;
                             while ($fila = $resultado->fetch_row()) {
@@ -135,10 +135,6 @@
                             /* liberar el conjunto de resultados */
                             $resultado->close();
                         }
-                        //$identUsuario->bind_result($pass,$tipo);
-
-                        /* obtener valor */
-                        //$identUsuario->fetch();
                         $conexion->close();
                                 
                     
@@ -147,11 +143,11 @@
             </table>
             
         
-            <p id="barra"></p><br/> 
+            
         		    
-			    </div>
-		    </div>
+             </div>
+	</div>
       
-	    </body>
-    </html>
+    </body>
+</html>
     

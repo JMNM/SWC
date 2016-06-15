@@ -105,7 +105,7 @@
                             //exit();
                         }
                         
-                        /* ligar variables de resultado */
+                        /* se muestran la lista de recursos y la obcion de consultar mas información */
                         if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
                             $i=0;
                             while ($fila = $resultado->fetch_row()) {
@@ -125,10 +125,7 @@
                             /* liberar el conjunto de resultados */
                             $resultado->close();
                         }
-                        //$identUsuario->bind_result($pass,$tipo);
-
-                        /* obtener valor */
-                        //$identUsuario->fetch();
+                        
                         $conexion->close();
                                 
                     

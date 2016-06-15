@@ -10,6 +10,7 @@ if(isset($_POST['codigoRecurso']) && isset($_POST['DNIAlumno'])){
         //exit();
     }
     
+    //se obtiene el numero de alumnos apuntados para darle el numero de turno al nuevo
     $numF=$conexion->query($sql_consulta);
     $colum = $numF->fetch_row();
     $numF->close();
@@ -18,7 +19,7 @@ if(isset($_POST['codigoRecurso']) && isset($_POST['DNIAlumno'])){
     
     $sql = "INSERT INTO lista".$_POST['codigoRecurso']." VALUES('".$codigoUsu."','".$_POST['DNIAlumno']."',".($colum[0]+1).")";
     
-    //$conexion->query("SET NAMES 'utf8'");
+    //se realiza la insersión  en la tabla del recurso
     if ($conexion->query($sql)){
         echo "Usuario inscrito correctamente, Su codigo es:".$codigoUsu;
         echo "<br/><a href=\"../index.php\"> Volver</a>";

@@ -86,9 +86,8 @@
                     //exit();
                 }
 
-                /* ligar variables de resultado */
+                /* se muestra la lista de recursos que puede modificar(solo los que ha creado él) para elegir el que modificar*/
                 if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
-                    //$i=0;
                     echo "<form name=\"formSelecRecu\" action=\"modificarRecurso.php\" method=\"get\">";
                     echo "<label class=\"labelIden\" for=\"codrecurso\">Recurso a modificar: </label> "
                                 ." <select id=\"codrecurso\" class=\"imputIden\" name=\"codrecurso\">";
@@ -104,8 +103,6 @@
                             echo " <option value=\"".$fila[0]."\">".$fila[0]."</option>";
                         }
                             
-                        
-                        //$i++;
                     }
                     echo "</select>"
                             . "<input class=\"labelIden\" type=\"submit\" value=\"Seleccionar\"/><br/>"
@@ -116,10 +113,6 @@
                 }else{
                     echo "<p>No hay Recursos para modifocar</p>";
                 }
-                //$identUsuario->bind_result($pass,$tipo);
-
-                /* obtener valor */
-                //$identUsuario->fetch();
                 $conexion->close();
                           
             ?>
@@ -137,7 +130,7 @@
                     //exit();
                 }
 
-                /* ligar variables de resultado */
+                /* se crea el formulario con los datos actuales del correspondiente recurso */
                 if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
                     
                     if($fila = $resultado->fetch_row()) {
@@ -166,24 +159,15 @@
                 }else{
                     echo "<p>No tiene recursos para modifocar</p>";
                 }
-                //$identUsuario->bind_result($pass,$tipo);
-
-                /* obtener valor */
-                //$identUsuario->fetch();
                 $conexion->close();
             }            
             ?>
             
-        </form>
-            
-    
-    	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
-	<script type="text/javascript">_uacct = "UA-2290740-1";urchinTracker();</script>
-
-				    
-			    </div>
-		    </div>
+            </form>
+      	    
+            </div>
+	</div>
       
-	    </body>
-    </html>
+    </body>
+</html>
     

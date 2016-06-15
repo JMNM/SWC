@@ -81,11 +81,12 @@
 
                         $sql = "SELECT turno FROM lista" . strtolower($_POST['codigoRecurso']) . " WHERE dni = '".$_POST['DNIAlumno']."'";
 
-                        //$conexion->query("SET NAMES 'utf8'");
+                        //se consulta si esta inscrito en la lista del recurso
                         if ($resul = $conexion->query($sql)){
                             if($fila = $resul->fetch_row()){
                                 $turno=$fila[0];
                                 echo "<p>".$turno."</p>";
+                                //si se encuentra inscrito se borra
                                 $sql_delete="DELETE FROM lista" . strtolower($_POST['codigoRecurso']) . " WHERE dni = '".$_POST['DNIAlumno']."'";
                                 $conexion->query($sql_delete);
                                 $sql_consul = "SELECT DNI,turno FROM lista" . strtolower($_POST['codigoRecurso']) . " WHERE turno> ".$turno;
@@ -112,9 +113,9 @@
             
             
     	    
-			    </div>
-		    </div>
+            </div>
+	</div>
       
-	    </body>
-    </html>
+    </body>
+</html>
     

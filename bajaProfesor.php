@@ -75,23 +75,33 @@
         </form>
             <?php 
                 if(isset($_POST['dniProf'])){
-                require_once('php/configuracionDB.php');
-                $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
-                
-                $sql = "SELECT nombre FROM " . TABLA_USUARIO . " WHERE dni = '".$_POST['dniProf']."'";
-                
-                //$conexion->query("SET NAMES 'utf8'");
-                if ($resul = $conexion->query($sql)){
-                    if($fila = $resul->fetch_row()){
-                        echo "<p>".$fila[0]."</p>";
-                        $sql_delete="DELETE FROM " . TABLA_USUARIO . " WHERE dni = '".$_POST['dniProf']."'";
-                        $conexion->query($sql_delete);
-                        echo "El profesor se ha borrado";
-                        if($_SESSION['tipo']==0){
-                            echo "<br/><a href=paginaAdmin.php> Volver</a>";
-                        }else {
-                            echo "<br/><a href=paginaProfesor.php> Volver</a>";
+                    require_once('php/configuracionDB.php');
+                    $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
+
+                    $sql = "SELECT nombre FROM " . TABLA_USUARIO . " WHERE dni = '".$_POST['dniProf']."'";
+
+                    //se realiza la consulta
+                    if ($resul = $conexion->query($sql)){
+                        if($fila = $resul->fetch_row()){
+                            echo "<p>".$fila[0]."</p>";
+                            //si se encuentra el profesor se borra
+                            $sql_delete="DELETE FROM " . TABLA_USUARIO . " WHERE dni = '".$_POST['dniProf']."'";
+                            $conexion->query($sql_delete);
+                            echo "El profesor se ha borrado";
+                            if($_SESSION['tipo']==0){
+                                echo "<br/><a href=paginaAdmin.php> Volver</a>";
+                            }else {
+                                echo "<br/><a href=paginaProfesor.php> Volver</a>";
+                            }
+                        }else{
+                            echo "El usuario no se ha encontrado";
+                            if($_SESSION['tipo']==0){
+                                echo "<br/><a href=paginaAdmin.php> Volver</a>";
+                            }else {
+                                echo "<br/><a href=paginaProfesor.php> Volver</a>";
+                            }
                         }
+
                     }else{
                         echo "El usuario no se ha encontrado";
                         if($_SESSION['tipo']==0){
@@ -100,16 +110,7 @@
                             echo "<br/><a href=paginaProfesor.php> Volver</a>";
                         }
                     }
-                    
-                }else{
-                    echo "El usuario no se ha encontrado";
-                    if($_SESSION['tipo']==0){
-                        echo "<br/><a href=paginaAdmin.php> Volver</a>";
-                    }else {
-                        echo "<br/><a href=paginaProfesor.php> Volver</a>";
-                    }
-                }
-                $conexion->close();
+                    $conexion->close();
                 }
             ?>
         

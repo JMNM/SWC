@@ -5,6 +5,7 @@
         if(!empty($_POST['nombre']) && !empty($_POST['apellidos']) && !empty($_POST['nickname']) && !empty($_POST['contrasenia']) 
              && !empty($_POST['DNI']) && !empty($_POST['email']) ){
             require_once('configuracionDB.php');
+            //si todas las variable estan definidas procede a insertar.
             $sql = "INSERT INTO ".TABLA_USUARIO." VALUES('".$_POST['nombre']."','".$_POST['apellidos']."','".$_POST['nickname'].
                                 "', '".md5($_POST['contrasenia'])."', ".$_POST['tipo'].", '".$_POST['DNI']."', '".$_POST['email']."')";
             $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
@@ -13,7 +14,7 @@
                 echo "Fallo de conexión";
                 //exit();
             }
-            //$conexion->query("SET NAMES 'utf8'");
+            //se inserta el profesor
             if ($conexion->query($sql)){
                 echo "Usuario insertado correctamente";
                 if($_SESSION['tipo']==0){

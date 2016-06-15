@@ -1,5 +1,6 @@
 <?php
     session_start();
+    //Se comprueba que las variables a utilizar estan definidas
     if(isset($_SESSION['usuario']) && isset($_POST['nombre']) && isset($_POST['asignatura']) && isset($_POST['fecha'])
             && isset($_POST['hora'])&& isset($_POST['duracion'])&& isset($_POST['lugar'])&& isset($_POST['codigo'])){
         require_once('configuracionDB.php');
@@ -9,7 +10,7 @@
                 . "asignatura='".$_POST['asignatura']."', fecha='".$_POST['fecha']."',"
                 . " hora_inicio='".$_POST['hora']."', duracion=".$_POST['duracion']. ", lugar='".$_POST['lugar']."'"
                 . " WHERE codigo='".$_POST['codigo']."'";
-        //$conexion->query("SET NAMES 'utf8'");
+        //Se hace la actualización
         if ( $conexion->query($sql_update)){
             echo "El recurso se ha modificado";
             if($_SESSION['tipo']==0){

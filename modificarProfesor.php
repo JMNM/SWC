@@ -76,14 +76,12 @@
                     //exit();
                 }
 
-                /* ligar variables de resultado */
+                /* Se obtiene los profesores(no administradores) para elegir al que modifica */
                 if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
-                    //$i=0;
                     echo "<form name=\"formSelecProfe\" action=\"modificarProfesor.php\" method=\"get\">";
                     echo "<label class=\"labelIden\" for=\"nickname\">Profesor a modificar: </label> "
                                 ." <select id=\"nickname\" class=\"imputIden\" name=\"nickname\">";
                     while ($fila = $resultado->fetch_row()) {
-                        //printf ("(%s) (%s) (%s)\n", $fila[0], $fila[1], $fila[2]);
                         if(isset($_GET['nickname'])){
                             if($_GET['nickname']==$fila[0]){
                                 echo " <option value=\"".$fila[0]."\" selected >".$fila[0]."</option>";
@@ -94,8 +92,6 @@
                             echo " <option value=\"".$fila[0]."\">".$fila[0]."</option>";
                         }
                             
-                        
-                        //$i++;
                     }
                     echo "</select>"
                             . "<input onclick=\"habilitarModi()\" class=\"labelIden\" type=\"submit\" value=\"Seleccionar\"/><br/>"
@@ -106,10 +102,6 @@
                 }else{
                     echo "<p>No hay profesores para modifocar</p>";
                 }
-                //$identUsuario->bind_result($pass,$tipo);
-
-                /* obtener valor */
-                //$identUsuario->fetch();
                 $conexion->close();
                           
             ?>
@@ -127,7 +119,7 @@
                     //exit();
                 }
 
-                /* ligar variables de resultado */
+                /* se crea el formulario con los datos actuales del profesor */
                 if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
                     
                     if($fila = $resultado->fetch_row()) {
@@ -150,19 +142,15 @@
                 }else{
                     echo "<p>No tiene recursos para modifocar</p>";
                 }
-                //$identUsuario->bind_result($pass,$tipo);
-
-                /* obtener valor */
-                //$identUsuario->fetch();
                 $conexion->close();
             }            
             ?>
             
-        </form>
+            </form>
             		    
-			    </div>
-		    </div>
+            </div>
+        </div>
       
-	    </body>
-    </html>
+    </body>
+</html>
     

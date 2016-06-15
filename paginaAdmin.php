@@ -112,7 +112,7 @@
                             //exit();
                         }
                         
-                        /* ligar variables de resultado */
+                        /* se crea la lista de profesores */
                         if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
                             while ($fila = $resultado->fetch_row()) {
                                 //printf ("(%s) (%s) (%s)\n", $fila[0], $fila[1], $fila[2]);
@@ -182,7 +182,7 @@
                             //exit();
                         }
                         
-                        /* ligar variables de resultado */
+                        /*se crea la lista de recursos */
                         if ($resultado = $conexion->query($sql,MYSQLI_USE_RESULT)) {
                             $i=0;
                             while ($fila = $resultado->fetch_row()) {
@@ -202,10 +202,6 @@
                             /* liberar el conjunto de resultados */
                             $resultado->close();
                         }
-                        //$identUsuario->bind_result($pass,$tipo);
-
-                        /* obtener valor */
-                        //$identUsuario->fetch();
                         $conexion->close();
                                 
                     
@@ -214,9 +210,9 @@
             </table>
     
 				    
-			    </div>
-		    </div>
+            </div>
+	</div>
       
-	    </body>
-    </html>
+    </body>
+</html>
     

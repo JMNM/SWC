@@ -1,12 +1,13 @@
 <?php
     session_start();
+    //Se comprueba que las variables a utilizar estan definidas
     if(isset($_SESSION['usuario']) && isset($_POST['nombre']) && isset($_POST['email']) && isset($_POST['apellidos']) && isset($_POST['nickname'])){
         require_once('configuracionDB.php');
         $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
 
         $sql_update= "UPDATE ".TABLA_USUARIO ." SET nombre='".$_POST['nombre'] . "', "
                 . "apellidos='".$_POST['apellidos']."', email='".$_POST['email']."' WHERE nickname='".$_POST['nickname']."'";
-        //$conexion->query("SET NAMES 'utf8'");
+        //se hace la actualización
         if ( $conexion->query($sql_update)){
             echo "El usuario se ha modificado";
             if($_SESSION['tipo']==0){
