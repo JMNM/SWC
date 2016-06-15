@@ -5,7 +5,7 @@ session_start();
 
     if(isset($_POST["user"])){
         if(!empty($_POST["user"])){
-            $conexion=new mysqli('localhost','root','4827','70156169x-2');
+            $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
 
             /* comprobar la conexión */
             if (mysqli_connect_errno()) {
