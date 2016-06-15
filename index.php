@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" >
 	<head>
-            <script type="text/javascript" src="funciones.js"></script>
+            <script type="text/javascript" src="js/funciones.js"></script>
 		<title>Asignaturas | Departamento de Ciencias de la Computación e Inteligencia Artificial | Universidad de Granada</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
 		<meta name="description" content="Universidad de Granada - Departamento de Ciencias de la Computación e Inteligencia Artificial CCIA-UGR" />
@@ -47,7 +47,7 @@
                 <a href="http://www.ugr.es" id="enlace_ugr"><img src="img/logo-ugr.png"></img></a>
             </div>
 
-        <form class="widget_loginform" action="identificacion.php" method="post">
+        <form class="widget_loginform" action="php/identificacion.php" method="post">
 	    <div id="login_form_widget" class="mod-buttons fieldset login_form login_form_widget">
 	      <label id="login_widget" for="ilogin_widget" class="login login_widget">
 		<span>Usuario</span>
@@ -64,6 +64,9 @@
 	      <span id="login_error_widget"> </span>
 	    </div>
 	</form>
+            
+            <br/><br/>
+            <a href="ModuloVisualizacion.php"><h2><b>Ver turnos actuales</b></h2></a>
 
           </div>
       <div id="pagina">
@@ -91,7 +94,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        require_once('configuracionDB.php');
+                        require_once('php/configuracionDB.php');
                         $sql = "SELECT codigo,asignatura,fecha FROM " . TABLA_RECURSOS;
 
                         $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
@@ -133,12 +136,7 @@
                 </tbody>
             </table>
 
-            
-    
-    	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
-	<script type="text/javascript">_uacct = "UA-2290740-1";urchinTracker();</script>
-
-				    
+              
 			    </div>
 		    </div>
       

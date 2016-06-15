@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" >
 	<head>
-            <script type="text/javascript" src="funciones.js"></script>
+            <script type="text/javascript" src="js/funciones.js"></script>
 		<title>Asignaturas | Departamento de Ciencias de la Computación e Inteligencia Artificial | Universidad de Granada</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
 		<meta name="description" content="Universidad de Granada - Departamento de Ciencias de la Computación e Inteligencia Artificial CCIA-UGR" />
@@ -56,22 +56,16 @@
         <a href=paginaAdmin.php>Volver</a><br/><br/>
         <?php
             echo "<p>Se ha identificado como ".$_SESSION['usuario']."</p>";
-            echo "<a href=cerrarSesion.php>Cerrar Sesión</a>";
+            echo "<a href=\"php/cerrarSesion.php\">Cerrar Sesión</a>";
         ?>
         </div>
         <div id="pagina">
       <h1 id="titulo_pagina"><span class="texto_titulo">Modificar Profesor</span></h1>
       <div id="contenido" class="sec_interior">
 	<div class="content_doku">
-            <script type="text/javascript">
-                function habilitarModi(){
-                    document.getElementById("formModificarProfe").disabled=false;
-        
-                    
-                }
-            </script>
+            
             <?php
-                require_once('configuracionDB.php');
+                require_once('php/configuracionDB.php');
                 $sql = "SELECT nickname FROM " . TABLA_USUARIO . " WHERE tipo=". 1 ;
 
                 $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
@@ -119,10 +113,10 @@
                 $conexion->close();
                           
             ?>
-            <form name="formUsuario" disabled="true" id="formModificarProfe" action="actualizarProfe.php" method="post" onsubmit="validarFormulario()">
+            <form name="formUsuario" disabled="true" id="formModificarProfe" action="php/actualizarProfe.php" method="post" onsubmit="validarFormulario()">
             <?php
             if(isset($_GET['nickname'])){
-                require_once('configuracionDB.php');
+                require_once('php/configuracionDB.php');
                 $sql = "SELECT nombre,apellidos,email FROM " . TABLA_USUARIO . " WHERE nickname='". $_GET['nickname']."'" ;
 
                 $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
@@ -165,12 +159,7 @@
             ?>
             
         </form>
-            
-    
-    	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
-	<script type="text/javascript">_uacct = "UA-2290740-1";urchinTracker();</script>
-
-				    
+            		    
 			    </div>
 		    </div>
       

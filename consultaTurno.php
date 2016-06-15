@@ -1,7 +1,7 @@
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" >
 	<head>
-            <script type="text/javascript" src="funciones.js"></script>
+            <script type="text/javascript" src="js/funciones.js"></script>
 		<title>Asignaturas | Departamento de Ciencias de la Computación e Inteligencia Artificial | Universidad de Granada</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
 		<meta name="description" content="Universidad de Granada - Departamento de Ciencias de la Computación e Inteligencia Artificial CCIA-UGR" />
@@ -76,22 +76,30 @@
             
             <?php 
                 if(isset($_POST['codigoRecurso2']) && isset($_POST['DNIAlumno'])){
-                require_once('configuracionDB.php');
-                $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
-                
-                $sql = "SELECT turno FROM lista" . strtolower($_POST['codigoRecurso2']) . " WHERE dni = '".$_POST['DNIAlumno']."'";
-                
-                //$conexion->query("SET NAMES 'utf8'");
-                if ($resul = $conexion->query($sql)){
-                    if($fila = $resul->fetch_row()){
-                        echo "<p>Hay aproximadamente ".($fila[0]-($fila[0]%10))." personas por delente";
+                    require_once('php/configuracionDB.php');
+                    $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
+
+                    $sql = "SELECT turno FROM lista" . strtolower($_POST['codigoRecurso2']) . " WHERE dni = '".$_POST['DNIAlumno']."'";
+
+                    //$conexion->query("SET NAMES 'utf8'");
+                    if ($resul = $conexion->query($sql)){
+                        if($fila = $resul->fetch_row()){
+                            if(($fila[0]-($fila[0]%10))>10){
+                                echo "<p>Hay aproximadamente ".($fila[0]-($fila[0]%10))." personas por delente";
+                                echo "<br/><a href=index.php> Volver</a>";
+                            }else{
+                                echo "<p>Se encuentra entre los 10 primeros";
+                                echo "<br/><a href=index.php> Volver</a>";
+                            }
+                        }else{
+                            echo "El usuario no se ha encontrado";
+                            echo "<br/><a href=index.php> Volver</a>";
+                        }
+                    }else{
+                        echo "El usuario no se ha encontrado";
                         echo "<br/><a href=index.php> Volver</a>";
                     }
-                }else{
-                    echo "El usuario no se ha encontrado";
-                    echo "<br/><a href=index.php> Volver</a>";
-                }
-                $conexion->close();
+                    $conexion->close();
                 }else{
                     echo "Los datos no son correctos";
                     echo "<br/><a href=index.php> Volver</a>";
@@ -100,12 +108,7 @@
         
             <p id="barra"></p><br/> 
             
-            
-    
-    	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
-	<script type="text/javascript">_uacct = "UA-2290740-1";urchinTracker();</script>
-
-				    
+            	    
 			    </div>
 		    </div>
       

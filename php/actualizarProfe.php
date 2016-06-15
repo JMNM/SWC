@@ -10,25 +10,25 @@
         if ( $conexion->query($sql_update)){
             echo "El usuario se ha modificado";
             if($_SESSION['tipo']==0){
-                echo "<br/><a href=paginaAdmin.php> Volver</a>";
+                echo "<br/><a href=\"../paginaAdmin.php\"> Volver</a>";
             }else {
-                echo "<br/><a href=paginaProfesor.php> Volver</a>";
+                echo "<br/><a href=\"../paginaProfesor.php\"> Volver</a>";
             }
         }else{
             echo "El usuario no se ha podido modificar";
             if($_SESSION['tipo']==0){
-                echo "<br/><a href=paginaAdmin.php> Volver</a>";
+                echo "<br/><a href=\"../paginaAdmin.php\"> Volver</a>";
             }else {
-                echo "<br/><a href=paginaProfesor.php> Volver</a>";
+                echo "<br/><a href=\"../paginaProfesor.php\"> Volver</a>";
             }
         }
         $conexion->close();
     }else{
         echo "El usuario no se ha podido modificar, los datos no son correctos";
         if($_SESSION['tipo']==0){
-            echo "<br/><a href=paginaAdmin.php> Volver</a>";
+            echo "<br/><a href=\"../paginaAdmin.php\"> Volver</a>";
         }else {
-            echo "<br/><a href=paginaProfesor.php> Volver</a>";
+            echo "<br/><a href=\"../paginaProfesor.php\"> Volver</a>";
         }
     }
 ?>

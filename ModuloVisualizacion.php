@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" >
     <head>
-        <script type="text/javascript" src="funciones.js"></script>
+        <script type="text/javascript" src="js/funciones.js"></script>
             <title>Asignaturas | Departamento de Ciencias de la Computación e Inteligencia Artificial | Universidad de Granada</title>
             <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
             <meta name="description" content="Universidad de Granada - Departamento de Ciencias de la Computación e Inteligencia Artificial CCIA-UGR" />
@@ -24,7 +24,7 @@
                 function actualizar(){
                     var target = $('contenidoActualizar');
                     if(!target) return false;
-                    new Ajax.PeriodicalUpdater(target, 'actualizaModuloVisualizacion.php', { frequency:30 , decay:1});
+                    new Ajax.PeriodicalUpdater(target, 'php/actualizaModuloVisualizacion.php', { frequency:30 , decay:1});
                 }
                 Event.observe(window,'load',actualizar,false);
             </script>
@@ -65,7 +65,7 @@
                                 </thead>
                                 <tbody id="contenidoActualizar">
                                     <?php
-                                        require_once('configuracionDB.php');
+                                        require_once('php/configuracionDB.php');
                                         $sql = "SELECT codigo_alumno,nombre_recurso,codigo_recurso,lugar FROM " . TABLA_TURNO;
 
                                         $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);

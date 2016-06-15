@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" >
 	<head>
-            <script type="text/javascript" src="funciones.js"></script>
+            <script type="text/javascript" src="js/funciones.js"></script>
 		<title>Asignaturas | Departamento de Ciencias de la Computación e Inteligencia Artificial | Universidad de Granada</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
 		<meta name="description" content="Universidad de Granada - Departamento de Ciencias de la Computación e Inteligencia Artificial CCIA-UGR" />
@@ -71,7 +71,7 @@
         <br/>
         <?php
             echo "<p>Se ha identificado como ".$_SESSION['usuario']."</p>";
-            echo "<a href=cerrarSesion.php>Cerrar Sesión</a>";
+            echo "<a href=\"php/cerrarSesion.php\">Cerrar Sesión</a>";
         ?>
 	</form>
 
@@ -101,7 +101,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        require_once('configuracionDB.php');
+                        require_once('php/configuracionDB.php');
                         $sql = "SELECT nickname,apellidos,nombre,DNI FROM " . TABLA_USUARIO . " WHERE tipo = 1";
 
                         $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
@@ -171,7 +171,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        require_once('configuracionDB.php');
+                        require_once('php/configuracionDB.php');
                         $sql = "SELECT nombre,codigo,asignatura,fecha,duracion,hora_inicio,lugar,profesor FROM " . TABLA_RECURSOS;
 
                         $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
@@ -213,9 +213,6 @@
                 </tbody>
             </table>
     
-    	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
-	<script type="text/javascript">_uacct = "UA-2290740-1";urchinTracker();</script>
-
 				    
 			    </div>
 		    </div>

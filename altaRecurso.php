@@ -1,7 +1,7 @@
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" >
 	<head>
-            <script type="text/javascript" src="funciones.js"></script>
+            <script type="text/javascript" src="js/funciones.js"></script>
 		<title>Asignaturas | Departamento de Ciencias de la Computación e Inteligencia Artificial | Universidad de Granada</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
 		<meta name="description" content="Universidad de Granada - Departamento de Ciencias de la Computación e Inteligencia Artificial CCIA-UGR" />
@@ -52,7 +52,7 @@
                         <div id="contenido" class="sec_interior">
                             <div class="content_doku">
 
-                                <form name="formIncribirseRecurso" action="apuntarseRecurso.php" method="post" >
+                                <form name="formIncribirseRecurso" action="php/apuntarseRecurso.php" method="post" >
                                     <label class="labelIden" for="codigoRecurso">Codigo Recurso:</label>
                                     <input class="imputIden" type="text" name="codigoRecurso" id="codigoRecurso" value="<?php 
                                                 if(isset($_COOKIE['codigo'])) echo $_COOKIE['codigo'];
@@ -70,9 +70,7 @@
 
                             </div>
 
-                            <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
-                            <script type="text/javascript">_uacct = "UA-2290740-1";urchinTracker();</script>
-
+                          
                         </div>
                         </div>
                     </div>

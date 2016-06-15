@@ -1,7 +1,7 @@
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" >
 	<head>
-            <script type="text/javascript" src="funciones.js"></script>
+            <script type="text/javascript" src="js/funciones.js"></script>
 		<title>Asignaturas | Departamento de Ciencias de la Computación e Inteligencia Artificial | Universidad de Granada</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
 		<meta name="description" content="Universidad de Granada - Departamento de Ciencias de la Computación e Inteligencia Artificial CCIA-UGR" />
@@ -75,48 +75,43 @@
         </form>
             <?php 
                 if(isset($_POST['codigoRecurso']) && isset($_POST['DNIAlumno'])){
-                    require_once('configuracionDB.php');
-                    $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
+                    if(!empty($_POST['codigoRecurso']) && !empty($_POST['DNIAlumno'])){
+                        require_once('php/configuracionDB.php');
+                        $conexion=new mysqli(DB_DSN,DB_USUARIO,DB_CONTRASENIA,DB_NAME);
 
-                    $sql = "SELECT turno FROM lista" . strtolower($_POST['codigoRecurso']) . " WHERE dni = '".$_POST['DNIAlumno']."'";
+                        $sql = "SELECT turno FROM lista" . strtolower($_POST['codigoRecurso']) . " WHERE dni = '".$_POST['DNIAlumno']."'";
 
-                    //$conexion->query("SET NAMES 'utf8'");
-                    if ($resul = $conexion->query($sql)){
-                        if($fila = $resul->fetch_row()){
-                            $turno=$fila[0];
-                            echo "<p>".$turno."</p>";
-                            $sql_delete="DELETE FROM lista" . strtolower($_POST['codigoRecurso']) . " WHERE dni = '".$_POST['DNIAlumno']."'";
-                            $conexion->query($sql_delete);
-                            $sql_consul = "SELECT DNI,turno FROM lista" . strtolower($_POST['codigoRecurso']) . " WHERE turno> ".$turno;
-                            if ($resultado = $conexion->query($sql_consul)){
-                                while($fila = $resultado->fetch_row()){
-                                    echo "<p>".$fila[0]." ".$fila[1]."</p>";
-                                    $sql_update= "UPDATE lista" . strtolower($_POST['codigoRecurso']) ." SET turno=".($fila[1]-1) . " WHERE DNI='".$fila[0]."'";
-                                    $conexion->query($sql_update);
+                        //$conexion->query("SET NAMES 'utf8'");
+                        if ($resul = $conexion->query($sql)){
+                            if($fila = $resul->fetch_row()){
+                                $turno=$fila[0];
+                                echo "<p>".$turno."</p>";
+                                $sql_delete="DELETE FROM lista" . strtolower($_POST['codigoRecurso']) . " WHERE dni = '".$_POST['DNIAlumno']."'";
+                                $conexion->query($sql_delete);
+                                $sql_consul = "SELECT DNI,turno FROM lista" . strtolower($_POST['codigoRecurso']) . " WHERE turno> ".$turno;
+                                if ($resultado = $conexion->query($sql_consul)){
+                                    while($fila = $resultado->fetch_row()){
+                                        echo "<p>".$fila[0]." ".$fila[1]."</p>";
+                                        $sql_update= "UPDATE lista" . strtolower($_POST['codigoRecurso']) ." SET turno=".($fila[1]-1) . " WHERE DNI='".$fila[0]."'";
+                                        $conexion->query($sql_update);
+                                    }
                                 }
                             }
+                            echo "El usuario se ha borrado";
+                            echo "<br/><a href=index.php> Volver</a>";
+                        }else{
+                            echo "El usuario no se ha encontrado";
+                            echo "<br/><a href=index.php> Volver</a>";
                         }
-                        echo "El usuario se ha borrado";
-                        echo "<br/><a href=index.php> Volver</a>";
-                    }else{
-                        echo "El usuario no se ha encontrado";
-                        echo "<br/><a href=index.php> Volver</a>";
+                        $conexion->close();
                     }
-                    $conexion->close();
-                }else{
-                    echo "Los datos no son correctos";
-                    echo "<br/><a href=index.php> Volver</a>";
                 }
             ?>
         
             <p id="barra"></p><br/> 
             
             
-    
-    	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
-	<script type="text/javascript">_uacct = "UA-2290740-1";urchinTracker();</script>
-
-				    
+    	    
 			    </div>
 		    </div>
       

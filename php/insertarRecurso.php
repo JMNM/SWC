@@ -18,24 +18,24 @@
                 "DNI VARCHAR(9) NOT NULL,".
                 "turno INT(6) NOT NULL) ";
         if ($conexion->query($sql_crear_tabla)){
-            echo "<br/><a href=paginaAdmin.php> Volver</a>";
+            echo "<br/><a href=\"../paginaAdmin.php\"> Volver</a>";
         }else{
             $sql_rm = "DELETE FROM ".TABLA_RECURSOS." WHERE codigo=".$_POST['codigo']."";
             $conexion->query($sql_rm);
             echo "Error al crear la tabla del recurso";
            if($_SESSION['tipo']==0){
-                echo "<br/><a href=paginaAdmin.php> Volver</a>";
+                echo "<br/><a href=\"../paginaAdmin.php\"> Volver</a>";
             }else {
-                echo "<br/><a href=paginaProfesor.php> Volver</a>";
+                echo "<br/><a href=\"../paginaProfesor.php\"> Volver</a>";
             }
         }
         
     }else{
         echo "El recurso ya existe";
         if($_SESSION['tipo']==0){
-            echo "<br/><a href=paginaAdmin.php> Volver</a>";
+            echo "<br/><a href=\"../paginaAdmin.php\"> Volver</a>";
         }else {
-            echo "<br/><a href=paginaProfesor.php> Volver</a>";
+            echo "<br/><a href=\"../paginaProfesor.php\"> Volver</a>";
         }
     }
     $conexion->close();

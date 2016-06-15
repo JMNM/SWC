@@ -4,8 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" >
 	<head>
-            <script type="text/javascript" src="funciones.js"></script>
-            <script type="text/javascript" src="gestionRecurso.js"></script>
+            <script type="text/javascript" src="js/funciones.js"></script>
 		<title>Asignaturas | Departamento de Ciencias de la Computación e Inteligencia Artificial | Universidad de Granada</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
 		<meta name="description" content="Universidad de Granada - Departamento de Ciencias de la Computación e Inteligencia Artificial CCIA-UGR" />
@@ -33,7 +32,7 @@
             
             </script>
             <?php
-                require_once('configuracionDB.php');
+                require_once('php/configuracionDB.php');
                 $sql = "SELECT codigoUsuario,DNI,turno FROM lista".$_GET['codrecurso'];
                 echo "<script type=\"text/javascript\"> "
                                 . "recurso=\"".$_GET['codrecurso']."\";"
@@ -224,7 +223,7 @@
                 function enviarGet()
                 {
                     
-                    window.open("actualizarTurno.php?cod="+actual[1]+"&recurso="+recurso+"","actualizar turno bd");
+                    window.open("php/actualizarTurno.php?cod="+actual[1]+"&recurso="+recurso+"","actualizar turno bd");
                     //location.href="actualizarTurno.php?dni="+actual[0]+"&recurso="+recurso+"";
                 }
             </script>
@@ -256,7 +255,6 @@
                 <a href="http://www.ugr.es" id="enlace_ugr"><img src="img/logo-ugr.png"></img></a>
             </div>
 
-      <form class="widget_loginform" action="https://decsai.ugr.es/" method="post">
 	    <br/>
         <br/>
         <br/>
@@ -272,9 +270,8 @@
         <br/>
         <?php
             echo "<p>Se ha identificado como ".$_SESSION['usuario']."</p>";
-            echo "<a href=cerrarSesion.php>Cerrar Sesión</a>";
+            echo "<a href=\"php/cerrarSesion.php\">Cerrar Sesión</a>";
         ?>
-	</form>
 
           </div>
         <div id="pagina">

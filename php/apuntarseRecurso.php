@@ -21,14 +21,14 @@ if(isset($_POST['codigoRecurso']) && isset($_POST['DNIAlumno'])){
     //$conexion->query("SET NAMES 'utf8'");
     if ($conexion->query($sql)){
         echo "Usuario inscrito correctamente, Su codigo es:".$codigoUsu;
-        echo "<br/><a href=index.php> Volver</a>";
+        echo "<br/><a href=\"../index.php\"> Volver</a>";
     }else{
         echo "El usuario ya existe";
-        echo "<br/><a href=index.php> Volver</a>";
+        echo "<br/><a href=\"../index.php\"> Volver</a>";
     }
     $conexion->close();
 }else{
         echo "No se a podido inscribir al recurso, datos incorrectos";
-        echo "<br/><a href=index.php> Volver</a>";
+        echo "<br/><a href=\"../index.php\"> Volver</a>";
     }
 ?>
