@@ -5,6 +5,8 @@
       <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" >
 	<head>
             <script type="text/javascript" src="js/funciones.js"></script>
+            <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+            <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 		<title>Asignaturas | Departamento de Ciencias de la Computación e Inteligencia Artificial | Universidad de Granada</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
 		<meta name="description" content="Universidad de Granada - Departamento de Ciencias de la Computación e Inteligencia Artificial CCIA-UGR" />
@@ -132,6 +134,12 @@
                         actual=listaAsistentes[0];
                         listaAsistentes.shift();
                     }
+                    var dataString= 'cod='+actual[1]+'&recurso='+recurso;
+                    $.ajax({
+                        type: "POST",
+                        url: "php/actualizarTurno.php",
+                        data: dataString
+                    });
                     //si no quedan asistentes se desabilitan los botones
                     if(listaAsistentes.length<=0 && listaEspera.length<=0){
                         document.getElementById("botonSig").disabled=true;
@@ -205,6 +213,8 @@
                     //si no quedan asistentes se desabilitan los botones
                     ActualizarListaEspera();
                 }
+                
+                
                 //se actualiza la talba de lista de asistente
                 function ActualizarListaAsistentes(){
                     var tbody=document.getElementById("listaNormal");
@@ -228,12 +238,6 @@
                         hijo=document.getElementById("tablaListaEspera").childNodes[0];
                     }
                     generaListaEspera()
-                }
-                //funcion para llamar a actualizarTurno que se encargara de introducir
-                //al que tiene el turno en la tabla de la DB turno para que se actualize el modulo de visualizacion.
-                function enviarGet()
-                {
-                    window.open("php/actualizarTurno.php?cod="+actual[1]+"&recurso="+recurso+"","actualizar turno bd");
                 }
             </script>
         </head>
@@ -268,14 +272,10 @@
         <br/>
         <br/>
         <br/>
-        <a href=<?php
-            if($_SESSION['tipo']==0){
-                echo "paginaAdmin.php";
-            }else {
-                echo "paginaProfesor.php";
-            }
-            ?>>Finalizar
-        </a><br/>
+        <script type="text/javascript">
+            document.write("<a href=\"php/borrarTurno.php?recurso="+recurso+"\">Finalizar</a>"); 
+        </script>
+        <br/>
         <br/>
         <?php
             echo "<p>Se ha identificado como ".$_SESSION['usuario']."</p>";
@@ -342,8 +342,8 @@
                 y en el caso de siguiente actualiza la tabla turno de la Base de datos
                 
             -->
-            <iframe name="miiframe"></iframe>
-            <a href="javascript:enviarGet()" onclick="Siguiente()" target="miiframe"><button id="botonSig">Siguiente</button></a>
+           
+            <a onclick="Siguiente()"><button id="botonSig">Siguiente</button></a>
             <button id="botonEspera" onclick="Espera()">Espera</button>
             <button id="botonAtendido" onclick="Atendido()">Atendido</button>
             
